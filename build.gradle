@@ -2,15 +2,19 @@ plugins {
     id 'org.openapi.generator' version '7.6.0'
     id 'java'
     id 'maven-publish'
-    id 'net.researchgate.release' version '3.0.2'
+    id 'pl.allegro.tech.build.axion-release' version '1.20.1'
 }
 
 group = 'com.ksef.api'
 
-def baseVersion = project.version
-def gitRef = System.getenv("GITHUB_REF") ?: "refs/heads/local"
-def isMasterBranch = gitRef.endsWith("/master")
-version = isMasterBranch ? baseVersion : "${baseVersion}-SNAPSHOT"
+scmVersion {
+    tag {
+        prefix = 'v'
+    }
+    versionIncrementer 'incrementPatch'
+}
+
+project.version = scmVersion.version
 
 ext {
     springBootVersion = '3.5.3'
@@ -102,24 +106,11 @@ publishing {
     repositories {
         maven {
             name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/collab-timekit/ksef-api")
+            url = uri("https://maven.pkg.github.com/Ksef-Integration/ksef-api")
             credentials {
                 username = System.getenv("GITHUB_ACTOR") ?: project.findProperty("gpr.user")
                 password = System.getenv("GITHUB_TOKEN") ?: project.findProperty("gpr.token")
             }
         }
-    }
-}
-
-release {
-    tagTemplate = 'v${version}'
-    versionPropertyFile = 'gradle.properties'
-    failOnSnapshotDependencies = false
-    preTagCommitMessage = '[Release] - pre tag'
-    tagCommitMessage = '[Release] - tag v${version}'
-    newVersionCommitMessage = '[Release] - next version bumped to $version'
-
-    git {
-        requireBranch.set("master")
     }
 }
