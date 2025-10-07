@@ -1,0 +1,58 @@
+type: object
+properties:
+  certificateSerialNumber:
+    type: string
+    description: Numer seryjny certyfikatu. Wyszukiwanie odbywa się na zasadzie dokładnego
+      dopasowania (exact match).
+    nullable: true
+  name:
+    type: string
+    description: Nazwa własna certyfikatu. Wyszukiwanie jest częściowe, czyli zwracane
+      są certyfikaty, których nazwa zawiera podany ciąg znaków (contains).
+    nullable: true
+  type:
+    allOf:
+    - $ref: ksef_certificate_type.yaml
+    description: 'Typ certyfikatu KSeF.
+
+      | Wartość | Opis |
+
+      | --- | --- |
+
+      | Authentication | Certyfikat używany do uwierzytelnienia w systemie. |
+
+      | Offline | Certyfikat używany wyłącznie do potwierdzania autentyczności wystawcy
+      i integralności faktury w trybie offline |
+
+      '
+    nullable: true
+  status:
+    allOf:
+    - $ref: certificate_list_item_status.yaml
+    description: 'Status certyfikatu.
+
+      | Wartość | Opis |
+
+      | --- | --- |
+
+      | Active | Certyfikat jest aktywny i może zostać użyty do uwierzytelnienia lub
+      realizacji operacji w trybie offline (w zależności od typu certyfikatu). |
+
+      | Blocked | Certyfikat został zablokowany i nie może zostać użyty do uwierzytelnienia
+      i realizacji operacji w trybie offline.            Status przejściowy do czasu
+      zakończenia procesu unieważniania. |
+
+      | Revoked | Certyfikat został unieważniony i nie może zostać użyty do uwierzytelnienia
+      i realizacji operacji w trybie offline. |
+
+      | Expired | Certyfikat wygasł i nie może zostać użyty do uwierzytelnienia i
+      realizacji operacji w trybie offline. |
+
+      '
+    nullable: true
+  expiresAfter:
+    type: string
+    description: Filtruje certyfikaty, które wygasają po podanej dacie.
+    format: date-time
+    nullable: true
+additionalProperties: false

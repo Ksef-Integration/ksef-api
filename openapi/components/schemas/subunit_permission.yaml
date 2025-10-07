@@ -1,0 +1,75 @@
+required:
+- authorIdentifier
+- authorizedIdentifier
+- description
+- id
+- permissionScope
+- startDate
+- subunitIdentifier
+type: object
+properties:
+  id:
+    type: string
+    description: Identyfikator uprawnienia.
+  authorizedIdentifier:
+    required:
+    - type
+    - value
+    allOf:
+    - $ref: subunit_permissions_authorized_identifier.yaml
+    description: 'Identyfikator uprawnionego.
+
+      | Type | Value |
+
+      | --- | --- |
+
+      | Nip | 10 cyfrowy numer NIP |
+
+      | Pesel | 11 cyfrowy numer PESEL |
+
+      | Fingerprint | Odcisk palca certyfikatu |'
+  subunitIdentifier:
+    required:
+    - type
+    - value
+    allOf:
+    - $ref: subunit_permissions_subunit_identifier.yaml
+    description: 'Identyfikator jednostki lub podmiotu podrzędnego.
+
+      | Type | Value |
+
+      | --- | --- |
+
+      | InternalId | Dwuczłonowy identyfikator składający się z numeru NIP i 5 cyfr:
+      `{nip}-{5_cyfr}` |
+
+      | Nip | 10 cyfrowy numer NIP |'
+  authorIdentifier:
+    required:
+    - type
+    - value
+    allOf:
+    - $ref: subunit_permissions_author_identifier.yaml
+    description: 'Identyfikator uprawniającego.
+
+      | Type | Value |
+
+      | --- | --- |
+
+      | Nip | 10 cyfrowy numer NIP |
+
+      | Pesel | 11 cyfrowy numer PESEL |
+
+      | Fingerprint | Odcisk palca certyfikatu |'
+  permissionScope:
+    allOf:
+    - $ref: subunit_permission_scope.yaml
+    description: Uprawnienie.
+  description:
+    type: string
+    description: Opis uprawnienia.
+  startDate:
+    type: string
+    description: Data rozpoczęcia obowiązywania uprawnienia.
+    format: date-time
+additionalProperties: false

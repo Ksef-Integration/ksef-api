@@ -1,0 +1,16 @@
+required:
+- type
+type: object
+properties:
+  type:
+    allOf:
+    - $ref: amount_type.yaml
+  from:
+    type: number
+    format: double
+    nullable: true
+  to:
+    type: number
+    format: double
+    nullable: true
+additionalProperties: false

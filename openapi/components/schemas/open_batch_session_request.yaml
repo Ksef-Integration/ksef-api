@@ -1,0 +1,49 @@
+required:
+- batchFile
+- encryption
+- formCode
+type: object
+properties:
+  formCode:
+    required:
+    - systemCode
+    - schemaVersion
+    - value
+    allOf:
+    - $ref: form_code.yaml
+    description: 'Schemat faktur wysyłanych w ramach sesji.
+
+
+      Obsługiwane schematy:
+
+      | SystemCode | SchemaVersion | Value |
+
+      | --- | --- | --- |
+
+      | FA (2) | 1-0E | FA |
+
+      | FA (3) | 1-0E | FA |
+
+      '
+  batchFile:
+    required:
+    - fileSize
+    - fileHash
+    - fileParts
+    allOf:
+    - $ref: batch_file_info.yaml
+    description: Informacje o przesyłanej paczce faktur.
+  encryption:
+    required:
+    - encryptedSymmetricKey
+    - initializationVector
+    allOf:
+    - $ref: encryption_info.yaml
+    description: Symetryczny klucz szyfrujący plik paczki, zaszyfrowany kluczem publicznym
+      Ministerstwa Finansów.
+  offlineMode:
+    type: boolean
+    description: Określa, czy podatnik deklaruje tryb fakurowania "offline" dla dokumentów
+      przesyłanych w sesji wsadowej.
+    default: false
+additionalProperties: false

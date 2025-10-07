@@ -1,0 +1,14 @@
+required:
+- referenceNumber
+- validUntil
+type: object
+properties:
+  referenceNumber:
+    type: string
+    description: Numer referencyjny sesji.
+  validUntil:
+    type: string
+    description: Termin ważności sesji. Po jego upływie sesja zostanie automatycznie
+      zamknięta.
+    format: date-time
+additionalProperties: false

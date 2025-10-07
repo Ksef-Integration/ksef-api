@@ -1,0 +1,13 @@
+required:
+- token
+- validUntil
+type: object
+properties:
+  token:
+    type: string
+    description: Token w formacie JWT.
+  validUntil:
+    type: string
+    description: Data ważności tokena.
+    format: date-time
+additionalProperties: false

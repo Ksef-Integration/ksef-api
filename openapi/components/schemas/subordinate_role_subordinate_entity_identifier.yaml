@@ -1,0 +1,20 @@
+required:
+- type
+- value
+type: object
+properties:
+  type:
+    allOf:
+    - $ref: subordinate_role_subordinate_entity_identifier_type.yaml
+    description: Typ identyfikatora.
+  value:
+    type: string
+    description: Wartość identyfikatora.
+additionalProperties: false
+description: 'Identyfikator podmiotu podrzędnego.
+
+  | Type | Value |
+
+  | --- | --- |
+
+  | Nip | 10 cyfrowy numer NIP |'

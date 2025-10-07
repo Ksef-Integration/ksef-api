@@ -1,0 +1,17 @@
+enum:
+- Issue
+- Invoicing
+- PermanentStorage
+type: string
+description: '| Wartość | Opis |
+
+  | --- | --- |
+
+  | Issue | Data wystawienia faktury. |
+
+  | Invoicing | Data przyjęcia faktury w systemie KSeF (do dalszego przetwarzania).
+  |
+
+  | PermanentStorage | Data trwałego zapisu faktury w repozytorium systemu KSeF. |
+
+  '

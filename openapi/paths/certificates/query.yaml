@@ -1,0 +1,67 @@
+post:
+  tags:
+  - Certificates
+  summary: Pobranie listy metadanych certyfikatów
+  description: 'Zwraca listę certyfikatów spełniających podane kryteria wyszukiwania.
+
+    W przypadku braku podania kryteriów wyszukiwania zwrócona zostanie nieprzefiltrowana
+    lista.'
+  parameters:
+  - name: pageSize
+    in: query
+    description: Rozmiar strony wyników
+    schema:
+      type: integer
+      format: int32
+      default: 10
+  - name: pageOffset
+    in: query
+    description: Numer strony wyników
+    schema:
+      type: integer
+      format: int32
+      default: 0
+  requestBody:
+    description: Kryteria filtrowania
+    content:
+      application/json:
+        schema:
+          allOf:
+          - $ref: ../../components/schemas/query_certificates_request.yaml
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/query_certificates_response.yaml
+          example:
+            certificates:
+            - certificateSerialNumber: 018209160C631F1E
+              name: Certyfikat 1
+              type: Authentication
+              commonName: Jan Kowalski
+              status: Active
+              subjectIdentifier:
+                type: Nip
+                value: '1234445678'
+              validFrom: '2025-08-24T14:15:22+00:00'
+              validTo: '2027-08-24T14:15:22+00:00'
+              lastUseDate: '2025-08-25T14:15:22+00:00'
+            hasMore: false
+    '400':
+      description: '| ExceptionCode | ExceptionDescription | Details |
+
+        |-|-|-|
+
+        | 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora}
+        |'
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/exception_response.yaml
+      x-summary: Bad Request
+    '401':
+      description: Unauthorized
+  security:
+  - Bearer: []

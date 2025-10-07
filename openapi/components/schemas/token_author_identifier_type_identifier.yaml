@@ -1,0 +1,25 @@
+required:
+- type
+- value
+type: object
+properties:
+  type:
+    allOf:
+    - $ref: token_author_identifier_type.yaml
+    description: 'Typ identyfikatora.
+
+      | Wartość | Opis |
+
+      | --- | --- |
+
+      | Nip | NIP. |
+
+      | Pesel | PESEL. |
+
+      | Fingerprint | Odcisk palca certyfikatu. |
+
+      '
+  value:
+    type: string
+    description: Wartość identyfikatora.
+additionalProperties: false

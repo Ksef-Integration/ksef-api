@@ -5,7 +5,7 @@ plugins {
     id 'net.researchgate.release' version '3.0.2'
 }
 
-group = 'com.calendar.api'
+group = 'com.ksef.api'
 
 def baseVersion = project.version
 def gitRef = System.getenv("GITHUB_REF") ?: "refs/heads/local"
@@ -63,19 +63,19 @@ tasks.withType(PublishToMavenRepository).configureEach {
 }
 
 openApiGenerate {
-    generatorName.set("spring")
-    inputSpec.set("$rootDir/api/main-api-file.yaml")
+    generatorName.set("java")
+    inputSpec.set("$rootDir/openapi/ksef-openapi.yaml")
     outputDir.set(generatedDir.toString())
 
-    apiPackage.set("com.calendar.api")
-    invokerPackage.set("com.calendar.api.invoker")
-    modelPackage.set("com.calendar.api.model")
+    apiPackage.set("com.ksef.api.client")
+    invokerPackage.set("com.ksef.api.client.invoker")
+    modelPackage.set("com.ksef.api.client.model")
 
     configOptions.set([
-            "interfaceOnly": "true",
+            "library": "resttemplate",
             "dateLibrary": "java8",
-            "useSpringBoot3": "true",
-            "useTags": "true",
+            "useRuntimeException": "true",
+            "useJakartaEe": "true"
     ])
 }
 
@@ -94,7 +94,7 @@ publishing {
         create("mavenJava", MavenPublication) {
             from components.java
             groupId = project.group
-            artifactId = "calendar-api"
+            artifactId = "ksef-api"
             version = project.version
         }
     }
@@ -102,7 +102,7 @@ publishing {
     repositories {
         maven {
             name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/collab-timekit/calendar-api")
+            url = uri("https://maven.pkg.github.com/collab-timekit/ksef-api")
             credentials {
                 username = System.getenv("GITHUB_ACTOR") ?: project.findProperty("gpr.user")
                 password = System.getenv("GITHUB_TOKEN") ?: project.findProperty("gpr.token")

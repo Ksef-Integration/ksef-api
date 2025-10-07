@@ -1,0 +1,22 @@
+post:
+  tags:
+  - Authentication
+  summary: Inicjalizacja uwierzytelnienia
+  description: Generuje unikalny challenge wymagany w kolejnym kroku operacji uwierzytelnienia.
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/authentication_challenge_response.yaml
+          example:
+            challenge: 20250514-CR-226FB7B000-3ACF9BE4C0-10
+            timestamp: '2025-07-11T12:23:56.0154302+00:00'
+    '400':
+      description: ''
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/exception_response.yaml
+      x-summary: Bad Request

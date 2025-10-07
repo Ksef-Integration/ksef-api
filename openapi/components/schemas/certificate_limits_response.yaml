@@ -1,0 +1,30 @@
+required:
+- canRequest
+- certificate
+- enrollment
+type: object
+properties:
+  canRequest:
+    type: boolean
+    description: Flaga informująca czy uwierzytelniony podmiot może złożyć nowy wniosek
+      o certyfikat.
+    readOnly: true
+  enrollment:
+    required:
+    - remaining
+    - limit
+    allOf:
+    - $ref: certificate_limit.yaml
+    description: Informacje o limitach związanych z liczbą możliwych do złożenia wniosków
+      certyfikacyjnych.
+  certificate:
+    required:
+    - remaining
+    - limit
+    allOf:
+    - $ref: certificate_limit.yaml
+    description: Informacje o limitach dotyczących liczby aktywnych certyfikatów wydanych
+      dla danego podmiotu.
+additionalProperties: false
+description: Informacje o limitach wniosków oraz certyfikatów dla uwierzytelnionego
+  podmiotu.

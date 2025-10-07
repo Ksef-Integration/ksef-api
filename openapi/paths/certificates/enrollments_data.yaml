@@ -1,0 +1,41 @@
+get:
+  tags:
+  - Certificates
+  summary: Pobranie danych do wniosku certyfikacyjnego
+  description: 'Zwraca dane wymagane do przygotowania wniosku certyfikacyjnego PKCS#10.
+
+
+    Dane te są zwracane na podstawie certyfikatu użytego w procesie uwierzytelnienia
+    i identyfikują podmiot, który składa wniosek o certyfikat.
+
+
+
+    > Więcej informacji:
+
+    > - [Pobranie danych do wniosku certyfikacyjnego](https://github.com/CIRFMF/ksef-client-docs/blob/main/certyfikaty-wewn%C4%99trzne-KSeF.md#2-pobranie-danych-do-wniosku-certyfikacyjnego)
+
+    > - [Przygotowanie wniosku](https://github.com/CIRFMF/ksef-client-docs/blob/main/certyfikaty-wewn%C4%99trzne-KSeF.md#3-przygotowanie-csr-certificate-signing-request)'
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/certificate_enrollment_data_response.yaml
+    '400':
+      description: '| ExceptionCode       | ExceptionDescription                                                                      |
+        Details |
+
+        |---------------------|-------------------------------------------------------------------------------------------|---------|
+
+        | 25001               | Brak możliwości pobrania danych do CSR dla wykorzystanego
+        sposobu uwierzytelnienia.       |         |'
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/exception_response.yaml
+      x-summary: Bad Request
+    '401':
+      description: Unauthorized
+  security:
+  - Bearer: []

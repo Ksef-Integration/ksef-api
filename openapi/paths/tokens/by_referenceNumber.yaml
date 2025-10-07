@@ -1,0 +1,66 @@
+get:
+  tags:
+  - KSeFTokens
+  summary: Pobranie statusu tokena
+  parameters:
+  - name: referenceNumber
+    in: path
+    description: Numer referencyjny tokena.
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/token_status_response.yaml
+    '400':
+      description: '| ExceptionCode | ExceptionDescription | Details |
+
+        |-|-|-|
+
+        | 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora}
+        |'
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/exception_response.yaml
+      x-summary: Bad Request
+    '401':
+      description: Unauthorized
+  security:
+  - Bearer: []
+delete:
+  tags:
+  - KSeFTokens
+  summary: Unieważnienie tokena
+  description: Unieważniony token nie pozwoli już na uwierzytelnienie się za jego
+    pomocą. Unieważnienie nie może zostać cofnięte.
+  parameters:
+  - name: referenceNumber
+    in: path
+    description: Numer referencyjny tokena do unieważeniania.
+    required: true
+    schema:
+      type: string
+  responses:
+    '204':
+      description: No Content
+    '400':
+      description: '| ExceptionCode | ExceptionDescription | Details |
+
+        |-|-|-|
+
+        | 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora}
+        |'
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/exception_response.yaml
+      x-summary: Bad Request
+    '401':
+      description: Unauthorized
+  security:
+  - Bearer: []

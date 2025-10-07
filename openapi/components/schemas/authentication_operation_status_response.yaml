@@ -1,0 +1,96 @@
+required:
+- authenticationMethod
+- startDate
+- status
+type: object
+properties:
+  startDate:
+    type: string
+    description: Data rozpoczęcia operacji uwierzytelnienia.
+    format: date-time
+  authenticationMethod:
+    allOf:
+    - $ref: authentication_method.yaml
+    description: 'Użyta metoda uwierzytelnienia.
+
+      | Wartość | Opis |
+
+      | --- | --- |
+
+      | Token | Token KSeF. |
+
+      | TrustedProfile | Profil Zaufany. |
+
+      | InternalCertificate | Certyfikat KSeF. |
+
+      | QualifiedSignature | Podpis kwalifikowany. |
+
+      | QualifiedSeal | Pieczęć kwalifikowana. |
+
+      | PersonalSignature | Podpis osobisty. |
+
+      | PeppolSignature | Podpis dostawcy uslug Peppol. |
+
+      '
+  status:
+    allOf:
+    - $ref: status_info.yaml
+    description: 'Informacje o aktualnym statusie.
+
+      | Code | Description | Details |
+
+      | --- | --- | --- |
+
+      | 100 | Uwierzytelnianie w toku | - |
+
+      | 200 | Uwierzytelnianie zakończone sukcesem | - |
+
+      | 415 | Uwierzytelnianie zakończone niepowodzeniem | Brak przypisanych uprawnień
+      |
+
+      | 425 | Uwierzytelnienie unieważnione  | Uwierzytelnienie i powiązane refresh
+      tokeny zostały unieważnione przez użytkownika |
+
+      | 450 | Uwierzytelnianie zakończone niepowodzeniem z powodu błędnego tokenu
+      | Nieprawidłowy token |
+
+      | 450 | Uwierzytelnianie zakończone niepowodzeniem z powodu błędnego tokenu
+      | Nieprawidłowy czas tokena |
+
+      | 450 | Uwierzytelnianie zakończone niepowodzeniem z powodu błędnego tokenu
+      | Token unieważniony |
+
+      | 450 | Uwierzytelnianie zakończone niepowodzeniem z powodu błędnego tokenu
+      | Token nieaktywny |
+
+      | 460 | Uwierzytelnianie zakończone niepowodzeniem z powodu błędu certyfikatu
+      | Nieważny certyfikat |
+
+      | 460 | Uwierzytelnianie zakończone niepowodzeniem z powodu błędu certyfikatu
+      | Błąd weryfikacji łańcucha certyfikatów |
+
+      | 460 | Uwierzytelnianie zakończone niepowodzeniem z powodu błędu certyfikatu
+      | Niezaufany łańcuch certyfikatów |
+
+      | 460 | Uwierzytelnianie zakończone niepowodzeniem z powodu błędu certyfikatu
+      | Certyfikat odwołany |
+
+      | 460 | Uwierzytelnianie zakończone niepowodzeniem z powodu błędu certyfikatu
+      | Niepoprawny certyfikat |
+
+      | 500 | Nieznany błąd | - |'
+  isTokenRedeemed:
+    type: boolean
+    description: Czy został już wydany refresh token powiązany z danym uwierzytelnieniem.
+    nullable: true
+  lastTokenRefreshDate:
+    type: string
+    description: Data ostatniego odświeżenia tokena.
+    format: date-time
+    nullable: true
+  refreshTokenValidUntil:
+    type: string
+    description: Termin ważności refresh tokena (o ile nie zostanie wcześniej unieważniony).
+    format: date-time
+    nullable: true
+additionalProperties: false

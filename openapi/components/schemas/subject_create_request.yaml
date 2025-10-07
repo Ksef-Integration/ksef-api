@@ -1,0 +1,21 @@
+type: object
+properties:
+  subjectNip:
+    type: string
+    nullable: true
+  subjectType:
+    allOf:
+    - $ref: subject_type.yaml
+  subunits:
+    type: array
+    items:
+      $ref: subunit.yaml
+    nullable: true
+  description:
+    type: string
+    nullable: true
+  createdDate:
+    type: string
+    format: date-time
+    nullable: true
+additionalProperties: false

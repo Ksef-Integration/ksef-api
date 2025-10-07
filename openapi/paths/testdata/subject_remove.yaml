@@ -1,0 +1,27 @@
+post:
+  tags:
+  - TestData
+  summary: Usunięcie podmiotu
+  description: Usuwanie podmiotu testowego. W przypadku grupy VAT i JST usunięte zostaną
+    również jednostki podrzędne.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          allOf:
+          - $ref: ../../components/schemas/subject_remove_request.yaml
+  responses:
+    '200':
+      description: OK
+    '400':
+      description: '| ExceptionCode | ExceptionDescription | Details |
+
+        |-|-|-|
+
+        | 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora}
+        |'
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/exception_response.yaml
+      x-summary: Bad Request

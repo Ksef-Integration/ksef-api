@@ -1,0 +1,12 @@
+type: object
+properties:
+  referenceNumber:
+    type: string
+    description: Numer referencyjny tokena KSeF. Za jego pomocą można sprawdzić jego
+      status lub go unieważnić.
+    nullable: true
+  token:
+    type: string
+    description: Token KSeF.
+    nullable: true
+additionalProperties: false

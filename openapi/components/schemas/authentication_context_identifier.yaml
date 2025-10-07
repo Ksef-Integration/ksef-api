@@ -1,0 +1,13 @@
+required:
+- type
+- value
+type: object
+properties:
+  type:
+    allOf:
+    - $ref: authentication_context_identifier_type.yaml
+    description: Typ identyfikatora
+  value:
+    type: string
+    description: Wartość identyfikatora
+additionalProperties: false

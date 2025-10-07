@@ -1,0 +1,14 @@
+required:
+- certificates
+- hasMore
+type: object
+properties:
+  certificates:
+    type: array
+    items:
+      $ref: certificate_list_item.yaml
+    description: Lista certyfikatów spełniających kryteria wyszukiwania.
+  hasMore:
+    type: boolean
+    description: Flaga informująca o dostępności kolejnej strony wyników.
+additionalProperties: false

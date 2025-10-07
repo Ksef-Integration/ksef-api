@@ -1,0 +1,8 @@
+required:
+- operationReferenceNumber
+type: object
+properties:
+  operationReferenceNumber:
+    type: string
+    description: Numer referencyjny operacji.
+additionalProperties: false

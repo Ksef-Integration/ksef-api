@@ -1,0 +1,13 @@
+required:
+- referenceNumber
+- timestamp
+type: object
+properties:
+  referenceNumber:
+    type: string
+    description: Numer referencyjny operacji przetwarzania wniosku certyfikacyjnego.
+  timestamp:
+    type: string
+    description: Data złożenia wniosku certyfikacyjnego.
+    format: date-time
+additionalProperties: false

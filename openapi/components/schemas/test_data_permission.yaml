@@ -1,0 +1,9 @@
+type: object
+properties:
+  description:
+    type: string
+    nullable: true
+  permissionType:
+    allOf:
+    - $ref: test_data_permission_type.yaml
+additionalProperties: false

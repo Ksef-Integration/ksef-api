@@ -1,0 +1,14 @@
+enum:
+- Authentication
+- Offline
+type: string
+description: '| Wartość | Opis |
+
+  | --- | --- |
+
+  | Authentication | Certyfikat używany do uwierzytelnienia w systemie. |
+
+  | Offline | Certyfikat używany wyłącznie do potwierdzania autentyczności wystawcy
+  i integralności faktury w trybie offline |
+
+  '

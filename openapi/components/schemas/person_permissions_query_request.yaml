@@ -1,0 +1,103 @@
+required:
+- queryType
+type: object
+properties:
+  authorIdentifier:
+    required:
+    - type
+    allOf:
+    - $ref: person_permissions_author_identifier.yaml
+    description: 'Identyfikator osoby lub podmiotu nadającego uprawnienie.
+
+      | Type | Value |
+
+      | --- | --- |
+
+      | Nip | 10 cyfrowy numer NIP |
+
+      | Pesel | 11 cyfrowy numer PESEL |
+
+      | Fingerprint | Odcisk palca certyfikatu |
+
+      | System | Identyfikator systemowy KSeF |'
+    nullable: true
+  authorizedIdentifier:
+    required:
+    - type
+    - value
+    allOf:
+    - $ref: person_permissions_authorized_identifier.yaml
+    description: 'Identyfikator osoby lub podmiotu uprawnionego.
+
+      | Type | Value |
+
+      | --- | --- |
+
+      | Nip | 10 cyfrowy numer NIP |
+
+      | Pesel | 11 cyfrowy numer PESEL |
+
+      | Fingerprint | Odcisk palca certyfikatu |'
+    nullable: true
+  contextIdentifier:
+    required:
+    - type
+    - value
+    allOf:
+    - $ref: person_permissions_context_identifier.yaml
+    description: 'Identyfikator kontekstu uprawnienia (dla uprawnień nadanych administratorom
+      jednostek podrzędnych).
+
+      | Type | Value |
+
+      | --- | --- |
+
+      | Nip | 10 cyfrowy numer NIP |
+
+      | InternalId | Dwuczłonowy identyfikator składający się z numeru NIP i 5 cyfr:
+      `{nip}-{5_cyfr}` |'
+    nullable: true
+  targetIdentifier:
+    required:
+    - type
+    allOf:
+    - $ref: person_permissions_target_identifier.yaml
+    description: 'Identyfikator podmiotu docelowego (dla uprawnień pośrednich).
+
+      | Type | Value |
+
+      | --- | --- |
+
+      | Nip | 10 cyfrowy numer NIP |
+
+      | AllPartners | Identyfikator oznaczający, że uprawnienie nadane w sposób pośredni
+      jest typu generalnego |'
+    nullable: true
+  permissionTypes:
+    type: array
+    items:
+      $ref: person_permission_type.yaml
+    description: Możliwe uprawnienia do filtrowania.
+    nullable: true
+  permissionState:
+    allOf:
+    - $ref: permission_state.yaml
+    description: "Stan uprawnienia. \n| Type | Value |\n| --- | --- |\n| Active |\
+      \ Uprawnienia aktywne |\n| Inactive | Uprawnienia nieaktywne, nadane w sposób\
+      \ poœredni |"
+    nullable: true
+  queryType:
+    allOf:
+    - $ref: person_permissions_query_type.yaml
+    description: 'Typ zapytania.
+
+      | Type | Value |
+
+      | --- | --- |
+
+      | PermissionsInCurrentContext | Uprawnienia posiadane w aktualnym kontekście
+      |
+
+      | PermissionsGrantedInCurrentContext | Uprawnienia nadane w aktualnym kontekście
+      |'
+additionalProperties: false

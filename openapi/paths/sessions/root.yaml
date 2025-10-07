@@ -1,0 +1,140 @@
+get:
+  tags:
+  - InvoiceStatus
+  summary: Pobranie listy sesji
+  description: 'Zwraca listę sesji spełniających podane kryteria wyszukiwania.
+
+
+    Wymagane uprawnienia:
+
+    - `Introspection` – pozwala pobrać wszystkie sesje w bieżącym kontekście uwierzytelnienia
+    `(ContextIdentifier)`.
+
+    - `InvoiceWrite` – pozwala pobrać wyłącznie sesje utworzone przez podmiot uwierzytelniający,
+    czyli podmiot inicjujący uwierzytelnienie.'
+  parameters:
+  - name: pageSize
+    in: query
+    description: Rozmiar strony.
+    schema:
+      type: integer
+      format: int32
+  - name: sessionType
+    in: query
+    description: 'Typ sesji.
+
+      | Wartość | Opis |
+
+      | --- | --- |
+
+      | Online | Wysyłka interaktywna (pojedyncze faktury). |
+
+      | Batch | Wysyłka wsadowa (paczka faktur). |
+
+      '
+    required: true
+    schema:
+      allOf:
+      - $ref: ../../components/schemas/session_type.yaml
+  - name: referenceNumber
+    in: query
+    description: Numer referencyjny sesji.
+    schema:
+      type: string
+  - name: dateCreatedFrom
+    in: query
+    description: Data utworzenia sesji (od).
+    schema:
+      type: string
+      format: date-time
+  - name: dateCreatedTo
+    in: query
+    description: Data utworzenia sesji (do).
+    schema:
+      type: string
+      format: date-time
+  - name: dateClosedFrom
+    in: query
+    description: Data zamknięcia sesji (od).
+    schema:
+      type: string
+      format: date-time
+  - name: dateClosedTo
+    in: query
+    description: Data zamknięcia sesji (do).
+    schema:
+      type: string
+      format: date-time
+  - name: dateModifiedFrom
+    in: query
+    description: Data ostatniej aktywności (wysyłka faktury lub zmiana statusu) w
+      ramach sesji (od).
+    schema:
+      type: string
+      format: date-time
+  - name: dateModifiedTo
+    in: query
+    description: Data ostatniej aktywności (wysyłka faktury lub zmiana statusu) w
+      ramach sesji (do).
+    schema:
+      type: string
+      format: date-time
+  - name: statuses
+    in: query
+    description: 'Statusy sesji.
+
+      | Wartość | Opis |
+
+      | --- | --- |
+
+      | InProgress | Sesja aktywna. |
+
+      | Succeeded | Sesja przetworzona poprawnie.            W trakcie przetwarzania
+      sesji nie wystąpiły żadne błędy, ale część faktur nadal mogła zostać odrzucona.
+      |
+
+      | Failed | Sesja nie przetworzona z powodu błędów.            Na etapie rozpoczynania
+      lub kończenia sesji wystąpiły błędy, które nie pozwoliły na jej poprawne przetworzenie.
+      |
+
+      | Cancelled | Sesja anulowania.            Został przekroczony czas na wysyłkę
+      w sesji wsadowej, lub nie przesłano żadnych faktur w sesji interaktywnej. |
+
+      '
+    schema:
+      type: array
+      items:
+        $ref: ../../components/schemas/common_session_status.yaml
+  - name: x-continuation-token
+    in: header
+    description: Token służący do pobrania kolejnej strony wyników.
+    schema:
+      type: string
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/sessions_query_response.yaml
+    '400':
+      description: "| ExceptionCode       | ExceptionDescription                 \
+        \               | Details                                                \
+        \     | \n|---------------------|-----------------------------------------------------|-------------------------------------------------------------|\n\
+        | 21418               | Przekazany token kontynuacji ma nieprawidłowy format.\
+        \ |   |\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora}\
+        \ |"
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/exception_response.yaml
+      x-summary: Bad Request
+    '401':
+      description: Unauthorized
+    '403':
+      description: Forbidden
+  security:
+  - Bearer: []
+  x-required-permissions:
+  - InvoiceWrite
+  - Introspection

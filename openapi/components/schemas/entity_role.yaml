@@ -1,0 +1,32 @@
+required:
+- description
+- role
+- startDate
+type: object
+properties:
+  parentEntityIdentifier:
+    required:
+    - type
+    - value
+    allOf:
+    - $ref: entity_roles_parent_entity_identifier.yaml
+    description: 'Identyfikator podmiotu nadrzędnego.
+
+      | Type | Value |
+
+      | --- | --- |
+
+      | Nip | 10 cyfrowy numer NIP |'
+    nullable: true
+  role:
+    allOf:
+    - $ref: entity_role_type.yaml
+    description: Rola.
+  description:
+    type: string
+    description: Opis.
+  startDate:
+    type: string
+    description: Data rozpoczęcia obowiązywania roli.
+    format: date-time
+additionalProperties: false

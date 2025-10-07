@@ -1,0 +1,15 @@
+required:
+- sessions
+type: object
+properties:
+  continuationToken:
+    type: string
+    description: Token służący do pobrania kolejnej strony wyników. Jeśli jest pusty,
+      to nie ma kolejnych stron.
+    nullable: true
+  sessions:
+    type: array
+    items:
+      $ref: sessions_query_response_item.yaml
+    description: Lista sesji.
+additionalProperties: false

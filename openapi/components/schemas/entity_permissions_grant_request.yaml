@@ -1,0 +1,28 @@
+required:
+- description
+- permissions
+- subjectIdentifier
+type: object
+properties:
+  subjectIdentifier:
+    required:
+    - type
+    - value
+    allOf:
+    - $ref: entity_permissions_subject_identifier.yaml
+    description: 'Identyfikator podmiotu.
+
+      | Type | Value |
+
+      | --- | --- |
+
+      | Nip | 10 cyfrowy numer NIP |'
+  permissions:
+    type: array
+    items:
+      $ref: entity_permission.yaml
+    description: Lista nadawanych uprawnień. Każda wartość może wystąpić tylko raz.
+  description:
+    type: string
+    description: Opis nadawanych uprawnień.
+additionalProperties: false

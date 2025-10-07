@@ -1,0 +1,17 @@
+type: object
+properties:
+  subordinateEntityIdentifier:
+    required:
+    - type
+    - value
+    allOf:
+    - $ref: entity_permissions_subordinate_entity_identifier.yaml
+    description: 'Identyfikator podmiotu podrzędnego.
+
+      | Type | Value |
+
+      | --- | --- |
+
+      | Nip | 10 cyfrowy numer NIP |'
+    nullable: true
+additionalProperties: false

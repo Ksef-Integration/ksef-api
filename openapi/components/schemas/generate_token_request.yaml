@@ -1,0 +1,13 @@
+type: object
+properties:
+  permissions:
+    type: array
+    items:
+      $ref: token_permission_type.yaml
+    description: Uprawnienia przypisane tokenowi.
+    nullable: true
+  description:
+    type: string
+    description: Opis tokena.
+    nullable: true
+additionalProperties: false

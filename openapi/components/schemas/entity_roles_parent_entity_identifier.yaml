@@ -1,0 +1,20 @@
+required:
+- type
+- value
+type: object
+properties:
+  type:
+    allOf:
+    - $ref: entity_roles_parent_entity_identifier_type.yaml
+    description: Typ identyfikatora.
+  value:
+    type: string
+    description: Wartość identyfikatora.
+additionalProperties: false
+description: 'Identyfikator podmiotu nadrzędnego.
+
+  | Type | Value |
+
+  | --- | --- |
+
+  | Nip | 10 cyfrowy numer NIP |'

@@ -1,0 +1,58 @@
+post:
+  tags:
+  - GrantPermissions
+  summary: Nadanie uprawnień podmiotowych
+  description: 'Rozpoczyna asynchroniczną operację nadawania uprawnień podmiotowych.
+
+
+    > Więcej informacji:
+
+    > - [Nadawanie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#nadanie-uprawnie%C5%84-podmiotowych)
+
+
+    Wymagane uprawnienia: `CredentialsManage`.'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          required:
+          - subjectIdentifier
+          - permission
+          - description
+          allOf:
+          - $ref: ../../components/schemas/entity_authorization_permissions_grant_request.yaml
+        example:
+          subjectIdentifier:
+            type: Nip
+            value: '7762811692'
+          permission: SelfInvoicing
+          description: Uprawnienia do samofakturowania
+  responses:
+    '202':
+      description: Accepted
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/permissions_operation_response.yaml
+          example:
+            operationReferenceNumber: 20250626-EG-333C814000-C529F710D8-D2
+    '400':
+      description: '| ExceptionCode | ExceptionDescription | Details |
+
+        |-|-|-|
+
+        | 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora}
+        |'
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/exception_response.yaml
+      x-summary: Bad Request
+    '401':
+      description: Unauthorized
+    '403':
+      description: Forbidden
+  security:
+  - Bearer: []
+  x-required-permissions:
+  - CredentialsManage

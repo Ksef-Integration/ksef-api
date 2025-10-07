@@ -1,0 +1,13 @@
+required:
+- accessToken
+type: object
+properties:
+  accessToken:
+    required:
+    - token
+    - validUntil
+    allOf:
+    - $ref: token_info.yaml
+    description: Token dostępu, którego należy używać w wywołaniach chronionych zasobów
+      API.
+additionalProperties: false

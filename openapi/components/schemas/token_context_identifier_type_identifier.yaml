@@ -1,0 +1,28 @@
+required:
+- type
+- value
+type: object
+properties:
+  type:
+    allOf:
+    - $ref: token_context_identifier_type.yaml
+    description: 'Typ identyfikatora.
+
+      | Wartość | Opis |
+
+      | --- | --- |
+
+      | Nip | NIP. |
+
+      | InternalId | Identyfikator wewnętrzny. |
+
+      | NipVatUe | Dwuczłonowy identyfikator składający się z numeru NIP i numeru
+      VAT-UE: `{nip}-{vat_ue}`. |
+
+      | PeppolId | Identyfikator dostawcy usług Peppol. |
+
+      '
+  value:
+    type: string
+    description: Wartość identyfikatora.
+additionalProperties: false

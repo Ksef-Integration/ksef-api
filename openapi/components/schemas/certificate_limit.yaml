@@ -1,0 +1,14 @@
+required:
+- limit
+- remaining
+type: object
+properties:
+  remaining:
+    type: integer
+    description: Pozostała wartość limitu.
+    format: int32
+  limit:
+    type: integer
+    description: Maksymalna liczba zasobów dozwolona w ramach limitu.
+    format: int32
+additionalProperties: false

@@ -1,0 +1,77 @@
+post:
+  tags:
+  - InteractiveInvoice
+  summary: Wysłanie faktury
+  description: 'Przyjmuje zaszyfrowaną fakturę oraz jej metadane i rozpoczyna jej
+    przetwarzanie.
+
+
+    > Więcej informacji:
+
+    > - [Wysłanie faktury](https://github.com/CIRFMF/ksef-docs/blob/main/sesja-interaktywna.md#2-wys%C5%82anie-faktury)
+
+
+    Wymagane uprawnienia: `InvoiceWrite`, `PefInvoiceWrite`.'
+  parameters:
+  - name: referenceNumber
+    in: path
+    description: Numer referencyjny sesji
+    required: true
+    schema:
+      type: string
+  requestBody:
+    description: Dane faktury
+    content:
+      application/json:
+        schema:
+          required:
+          - invoiceHash
+          - invoiceSize
+          - encryptedInvoiceHash
+          - encryptedInvoiceSize
+          - encryptedInvoiceContent
+          allOf:
+          - $ref: ../../components/schemas/send_invoice_request.yaml
+        example:
+          invoiceHash: EbrK4cOSjW4hEpJaHU71YXSOZZmqP5++dK9nLgTzgV4=
+          invoiceSize: 6480
+          encryptedInvoiceHash: miYb1z3Ljw5VucTZslv3Tlt+V/EK1V8Q8evD8HMQ0dc=
+          encryptedInvoiceSize: 6496
+          encryptedInvoiceContent: '...'
+          offlineMode: false
+  responses:
+    '202':
+      description: Accepted
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/send_invoice_response.yaml
+          example:
+            referenceNumber: 20250625-EE-319D7EE000-B67F415CDC-2C
+    '400':
+      description: "| ExceptionCode       | ExceptionDescription                 \
+        \               | Details                                                \
+        \                                                    | \n|---------------------|-----------------------------------------------------|------------------------------------------------------------------------------------------------------------|\n\
+        | 21173               | Brak sesji o wskazanym numerze referencyjnym.    \
+        \   | Sesja o numerze referencyjnym {referenceNumber} nie została odnaleziona.\
+        \                                   |\n| 21155               | Przekroczono\
+        \ dozwoloną liczbę faktur w sesji.       | Sesja o numerze referencyjnym {referenceNumber}\
+        \ osiągnęła dozwolony limit liczby faktur {invoiceLimit}.    |\n| 21180  \
+        \             | Status sesji nie pozwala na wykonanie operacji.     | Status\
+        \ sesji {code} uniemożliwia wysyłkę faktur.                              \
+        \          |\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu\
+        \ z walidatora} |"
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/exception_response.yaml
+      x-summary: Bad Request
+    '401':
+      description: Unauthorized
+    '403':
+      description: Forbidden
+  security:
+  - Bearer: []
+  x-required-permissions:
+  - InvoiceWrite
+  - PefInvoiceWrite

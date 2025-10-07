@@ -1,0 +1,29 @@
+get:
+  tags:
+  - PublicKeyCertificates
+  summary: Pobranie certyfikatów
+  description: Zwraca informacje o kluczach publicznych używanych do szyfrowania danych
+    przesyłanych do systemu KSeF.
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: ../../components/schemas/public_key_certificate.yaml
+          example:
+          - certificate: MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwocTwdNgt2+PXJ2fcB7k1kn5eFUTXBeep9pH...
+            validFrom: '2024-07-11T12:23:56.0154302+00:00'
+            validTo: '2028-07-11T12:23:56.0154302+00:00'
+            usage:
+            - KsefTokenEncryption
+            - SymmetricKeyEncryption
+    '400':
+      description: ''
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/exception_response.yaml
+      x-summary: Bad Request

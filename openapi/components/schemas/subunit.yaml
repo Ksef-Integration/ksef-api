@@ -1,0 +1,9 @@
+type: object
+properties:
+  subjectNip:
+    type: string
+    nullable: true
+  description:
+    type: string
+    nullable: true
+additionalProperties: false

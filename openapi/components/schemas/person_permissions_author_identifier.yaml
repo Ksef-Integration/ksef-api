@@ -1,0 +1,27 @@
+required:
+- type
+type: object
+properties:
+  type:
+    allOf:
+    - $ref: person_permissions_author_identifier_type.yaml
+    description: Typ identyfikatora.
+  value:
+    type: string
+    description: Wartość identyfikatora. W przypadku typu System należy pozostawić
+      puste. W pozostałych przypadkach pole jest wymagane.
+    nullable: true
+additionalProperties: false
+description: 'Identyfikator osoby lub podmiotu nadającego uprawnienie.
+
+  | Type | Value |
+
+  | --- | --- |
+
+  | Nip | 10 cyfrowy numer NIP |
+
+  | Pesel | 11 cyfrowy numer PESEL |
+
+  | Fingerprint | Odcisk palca certyfikatu |
+
+  | System | Identyfikator systemowy KSeF |'

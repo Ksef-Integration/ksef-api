@@ -1,0 +1,4 @@
+enum:
+- Active
+- Inactive
+type: string

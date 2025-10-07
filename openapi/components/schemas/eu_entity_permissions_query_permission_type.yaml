@@ -1,0 +1,6 @@
+enum:
+- VatUeManage
+- InvoiceWrite
+- InvoiceRead
+- Introspection
+type: string

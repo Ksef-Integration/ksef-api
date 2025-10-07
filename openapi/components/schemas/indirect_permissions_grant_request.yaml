@@ -1,0 +1,50 @@
+required:
+- description
+- permissions
+- subjectIdentifier
+type: object
+properties:
+  subjectIdentifier:
+    required:
+    - type
+    - value
+    allOf:
+    - $ref: indirect_permissions_subject_identifier.yaml
+    description: 'Identyfikator osoby fizycznej.
+
+      | Type | Value |
+
+      | --- | --- |
+
+      | Nip | 10 cyfrowy numer NIP |
+
+      | Pesel | 11 cyfrowy numer PESEL |
+
+      | Fingerprint | Odcisk palca certyfikatu |'
+  targetIdentifier:
+    required:
+    - type
+    allOf:
+    - $ref: indirect_permissions_target_identifier.yaml
+    description: 'Identyfikator podmiotu, w którego kontekście chcemy pośrednio nadać
+      uprawnienia. W przypadku nadawania uprawnienia generalnego, pole to powinno
+      mieć wartość null.
+
+      | Type | Value |
+
+      | --- | --- |
+
+      | Nip | 10 cyfrowy numer NIP |
+
+      | AllPartners | Identyfikator oznaczający, że uprawnienie nadane w sposób pośredni
+      jest typu generalnego |'
+    nullable: true
+  permissions:
+    type: array
+    items:
+      $ref: indirect_permission_type.yaml
+    description: Lista nadawanych uprawnień. Każda wartość może wystąpić tylko raz.
+  description:
+    type: string
+    description: Opis nadawanych uprawnień.
+additionalProperties: false

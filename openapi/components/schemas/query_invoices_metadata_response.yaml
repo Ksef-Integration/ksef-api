@@ -1,0 +1,19 @@
+required:
+- hasMore
+- invoices
+- isTruncated
+type: object
+properties:
+  hasMore:
+    type: boolean
+    description: Określa, czy dostępna jest kolejna strona wyników.
+  isTruncated:
+    type: boolean
+    description: Określa, czy wynik został obcięty z powodu przekroczenia limitu liczby
+      faktur (10 000).
+  invoices:
+    type: array
+    items:
+      $ref: invoice_metadata.yaml
+    description: Lista faktur spełniających kryteria.
+additionalProperties: false

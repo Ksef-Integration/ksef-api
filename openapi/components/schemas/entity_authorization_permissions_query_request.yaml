@@ -1,0 +1,53 @@
+required:
+- queryType
+type: object
+properties:
+  authorizingIdentifier:
+    required:
+    - type
+    - value
+    allOf:
+    - $ref: entity_authorizations_authorizing_entity_identifier.yaml
+    description: 'Identyfikator podmiotu uprawniającego.
+
+      | Type | Value |
+
+      | --- | --- |
+
+      | Nip | 10 cyfrowy numer NIP |'
+    nullable: true
+  authorizedIdentifier:
+    required:
+    - type
+    - value
+    allOf:
+    - $ref: entity_authorizations_authorized_entity_identifier.yaml
+    description: 'Identyfikator podmiotu uprawnionego.
+
+      | Type | Value |
+
+      | --- | --- |
+
+      | Nip | 10 cyfrowy numer NIP |
+
+      | PeppolId | Identyfikator dostawcy usług Peppol |'
+    nullable: true
+  queryType:
+    allOf:
+    - $ref: query_type.yaml
+    description: 'Typ zapytania.
+
+      | Type | Value |
+
+      | --- | --- |
+
+      | Granted | Uprawnienia nadane innym podmiotom |
+
+      | Received | Uprawnienia otrzymane od innych podmiotów |'
+  permissionTypes:
+    type: array
+    items:
+      $ref: invoice_permission_type.yaml
+    description: Możliwe uprawnienia do filtrowania.
+    nullable: true
+additionalProperties: false

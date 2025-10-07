@@ -1,0 +1,22 @@
+type: object
+properties:
+  ip4Addresses:
+    type: array
+    items:
+      type: string
+    description: Lista adresów IPv4 w notacji dziesiętnej kropkowanej, np. `192.168.0.10`.
+    nullable: true
+  ip4Ranges:
+    type: array
+    items:
+      type: string
+    description: Lista adresów IPv4 podana w formie zakresu początek–koniec, oddzielonego
+      pojedynczym myślnikiem, np. `10.0.0.1–10.0.0.254`.
+    nullable: true
+  ip4Masks:
+    type: array
+    items:
+      type: string
+    description: Lista adresów IPv4 w notacji CIDR, np. `172.16.0.0/16`.
+    nullable: true
+additionalProperties: false

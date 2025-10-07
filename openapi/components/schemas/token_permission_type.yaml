@@ -1,0 +1,8 @@
+enum:
+- InvoiceRead
+- InvoiceWrite
+- CredentialsRead
+- CredentialsManage
+- SubunitManage
+- EnforcementOperations
+type: string

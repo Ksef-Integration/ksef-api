@@ -1,0 +1,13 @@
+enum:
+- Online
+- Batch
+type: string
+description: '| Wartość | Opis |
+
+  | --- | --- |
+
+  | Online | Wysyłka interaktywna (pojedyncze faktury). |
+
+  | Batch | Wysyłka wsadowa (paczka faktur). |
+
+  '

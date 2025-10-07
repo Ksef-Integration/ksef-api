@@ -1,0 +1,15 @@
+type: object
+properties:
+  isAttachmentAllowed:
+    type: boolean
+    description: Informacja czy Podmiot ma obecnie możliwość dodawania Załączników
+      do Faktur
+  revokedDate:
+    type: string
+    description: 'Data i czas zakończenia możliwość dodawania przez Podmiot Załączników
+      do Faktur.
+
+      Brak podanej daty oznacza bezterminową możliwość dodawania Załączników do Faktur'
+    format: date-time
+    nullable: true
+additionalProperties: false

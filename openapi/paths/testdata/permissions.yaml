@@ -1,0 +1,27 @@
+post:
+  tags:
+  - TestData
+  summary: Nadanie uprawnień testowemu podmiotowi/osobie fizycznej
+  description: Nadawanie uprawnień testowemu podmiotowi lub osobie fizycznej, a także
+    w ich kontekście.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          allOf:
+          - $ref: ../../components/schemas/test_data_permissions_grant_request.yaml
+  responses:
+    '200':
+      description: OK
+    '400':
+      description: '| ExceptionCode | ExceptionDescription | Details |
+
+        |-|-|-|
+
+        | 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora}
+        |'
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/exception_response.yaml
+      x-summary: Bad Request

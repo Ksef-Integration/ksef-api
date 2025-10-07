@@ -1,0 +1,74 @@
+type: object
+properties:
+  referenceNumber:
+    type: string
+    description: Numer referencyjny tokena.
+    nullable: true
+  authorIdentifier:
+    required:
+    - type
+    - value
+    allOf:
+    - $ref: token_author_identifier_type_identifier.yaml
+    description: Identyfikator osoby która wygenerowała token.
+    nullable: true
+  contextIdentifier:
+    required:
+    - type
+    - value
+    allOf:
+    - $ref: token_context_identifier_type_identifier.yaml
+    description: Identyfikator kontekstu, w którym został wygenerowany token i do
+      którego daje dostęp.
+    nullable: true
+  description:
+    type: string
+    description: Opis tokena.
+    nullable: true
+  requestedPermissions:
+    type: array
+    items:
+      $ref: token_permission_type.yaml
+    description: Uprawnienia przypisane tokenowi.
+    nullable: true
+  dateCreated:
+    type: string
+    description: Data i czas utworzenia tokena.
+    format: date-time
+  lastUseDate:
+    type: string
+    description: Data ostatniego użycia tokena.
+    format: date-time
+    nullable: true
+  status:
+    allOf:
+    - $ref: authentication_token_status.yaml
+    description: 'Status tokena.
+
+      | Wartość | Opis |
+
+      | --- | --- |
+
+      | Pending | Token został utworzony ale jest jeszcze w trakcie aktywacji i nadawania
+      uprawnień. Nie może być jeszcze wykorzystywany do uwierzytelniania. |
+
+      | Active | Token jest aktywny i może być wykorzystywany do uwierzytelniania.
+      |
+
+      | Revoking | Token jest w trakcie unieważniania. Nie może już być wykorzystywany
+      do uwierzytelniania. |
+
+      | Revoked | Token został unieważniony i nie może być wykorzystywany do uwierzytelniania.
+      |
+
+      | Failed | Nie udało się aktywować tokena. Należy wygenerować nowy token, obecny
+      nie może być wykorzystywany do uwierzytelniania. |
+
+      '
+  statusDetails:
+    type: array
+    items:
+      type: string
+    description: Dodatkowe informacje na temat statusu, zwracane w przypadku błędów.
+    nullable: true
+additionalProperties: false

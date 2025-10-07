@@ -1,0 +1,25 @@
+required:
+- challenge
+- contextIdentifier
+- encryptedToken
+type: object
+properties:
+  challenge:
+    type: string
+    description: Wygenerowany wcześniej challenge.
+  contextIdentifier:
+    required:
+    - type
+    - value
+    allOf:
+    - $ref: authentication_context_identifier.yaml
+    description: Indentyfikator kontekstu do którego następuje uwierzytelnienie.
+  encryptedToken:
+    type: string
+    description: Zaszyfrowany token wraz z timestampem z challenge'a, w formacie `token|timestamp`.
+  authorizationPolicy:
+    allOf:
+    - $ref: authorization_policy.yaml
+    description: Polityka autoryzacji żądań przy każdym użyciu tokena dostępu.
+    nullable: true
+additionalProperties: false

@@ -1,0 +1,28 @@
+required:
+- description
+- permissions
+- subjectIdentifier
+type: object
+properties:
+  subjectIdentifier:
+    required:
+    - type
+    - value
+    allOf:
+    - $ref: eu_entity_permissions_subject_identifier.yaml
+    description: 'Identyfikator podmiotu.
+
+      | Type | Value |
+
+      | --- | --- |
+
+      | Fingerprint | Odcisk palca certyfikatu |'
+  permissions:
+    type: array
+    items:
+      $ref: eu_entity_permission_type.yaml
+    description: Lista nadawanych uprawnień. Każda wartość może wystąpić tylko raz.
+  description:
+    type: string
+    description: Opis nadawanych uprawnień.
+additionalProperties: false

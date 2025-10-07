@@ -1,0 +1,30 @@
+enum:
+- Token
+- TrustedProfile
+- InternalCertificate
+- QualifiedSignature
+- QualifiedSeal
+- PersonalSignature
+- PeppolSignature
+type: string
+description: 'Metoda uwierzytelnienia.
+
+  | Wartość | Opis |
+
+  | --- | --- |
+
+  | Token | Token KSeF. |
+
+  | TrustedProfile | Profil Zaufany. |
+
+  | InternalCertificate | Certyfikat KSeF. |
+
+  | QualifiedSignature | Podpis kwalifikowany. |
+
+  | QualifiedSeal | Pieczęć kwalifikowana. |
+
+  | PersonalSignature | Podpis osobisty. |
+
+  | PeppolSignature | Podpis dostawcy uslug Peppol. |
+
+  '

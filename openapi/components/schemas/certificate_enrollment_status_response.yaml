@@ -1,0 +1,35 @@
+required:
+- requestDate
+- status
+type: object
+properties:
+  requestDate:
+    type: string
+    description: Data złożenia wniosku certyfikacyjnego.
+    format: date-time
+  status:
+    allOf:
+    - $ref: status_info.yaml
+    description: 'Informacje o aktualnym statusie.
+
+      | Code | Description | Details |
+
+      | --- | --- | --- |
+
+      | 100 | Wniosek przyjęty do realizacji | - |
+
+      | 200 | Wniosek obsłużony (certyfikat wygenerowany) | - |
+
+      | 400 | Wniosek odrzucony | Klucz publiczny został już certyfikowany przez inny
+      podmiot. |
+
+      | 400 | Wniosek odrzucony | Osiągnięto dopuszczalny limit posiadanych certyfikatów.
+      |
+
+      | 500 | Nieznany błąd | - |'
+  certificateSerialNumber:
+    type: string
+    description: "Numer seryjny wygenerowanego certyfikatu (w formacie szesnastkowym).\
+      \ \nZwracany w przypadku prawidłowego przeprocesowania wniosku certyfikacyjnego."
+    nullable: true
+additionalProperties: false

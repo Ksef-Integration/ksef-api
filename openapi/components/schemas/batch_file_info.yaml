@@ -1,0 +1,21 @@
+required:
+- fileHash
+- fileParts
+- fileSize
+type: object
+properties:
+  fileSize:
+    type: integer
+    description: Rozmiar pliku paczki w bajtach. Maksymalny rozmiar paczki to 5GiB
+      (5 368 709 120 bajtów).
+    format: int64
+  fileHash:
+    type: string
+    description: Skrót SHA256 pliku paczki, zakodowany w formacie Base64.
+  fileParts:
+    type: array
+    items:
+      $ref: batch_file_part_info.yaml
+    description: Informacje o częściach pliku paczki. Maksymalna liczba części to
+      50.
+additionalProperties: false

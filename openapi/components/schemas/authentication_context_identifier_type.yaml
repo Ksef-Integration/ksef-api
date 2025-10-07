@@ -1,0 +1,6 @@
+enum:
+- Nip
+- InternalId
+- NipVatUe
+- PeppolId
+type: string

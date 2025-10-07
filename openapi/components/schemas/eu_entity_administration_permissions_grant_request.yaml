@@ -1,0 +1,41 @@
+required:
+- contextIdentifier
+- description
+- euEntityName
+- subjectIdentifier
+type: object
+properties:
+  subjectIdentifier:
+    required:
+    - type
+    - value
+    allOf:
+    - $ref: eu_entity_administration_permissions_subject_identifier.yaml
+    description: 'Identyfikator podmiotu uprawnionego.
+
+      | Type | Value |
+
+      | --- | --- |
+
+      | Fingerprint | Odcisk palca certyfikatu |'
+  contextIdentifier:
+    required:
+    - type
+    - value
+    allOf:
+    - $ref: eu_entity_administration_permissions_context_identifier.yaml
+    description: 'Identyfikator zlożony z podmiotu polskiego i podmiotu unijnego.
+
+      | Type | Value |
+
+      | --- | --- |
+
+      | NipVatUe | Dwuczłonowy identyfikator składający się z numeru NIP i numeru
+      VAT-UE: `{nip}-{vat_ue}` |'
+  description:
+    type: string
+    description: Opis nadawanych uprawnień.
+  euEntityName:
+    type: string
+    description: Nazwa podmiotu unijnego.
+additionalProperties: false

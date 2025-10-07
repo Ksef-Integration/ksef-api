@@ -1,0 +1,14 @@
+required:
+- hasMore
+- roles
+type: object
+properties:
+  roles:
+    type: array
+    items:
+      $ref: subordinate_entity_role.yaml
+    description: Lista ról.
+  hasMore:
+    type: boolean
+    description: Flaga informująca o dostępności kolejnej strony wyników.
+additionalProperties: false

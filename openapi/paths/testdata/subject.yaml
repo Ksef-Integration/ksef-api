@@ -1,0 +1,31 @@
+post:
+  tags:
+  - TestData
+  summary: Utworzenie podmiotu
+  description: Tworzenie nowego podmiotu testowego. W przypadku grupy VAT i JST istnieje
+    możliwość stworzenia jednostek podrzędnych. W wyniku takiego działania w systemie
+    powstanie powiązanie między tymi podmiotami.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          allOf:
+          - $ref: ../../components/schemas/subject_create_request.yaml
+  responses:
+    '200':
+      description: OK
+    '400':
+      description: '| ExceptionCode       | ExceptionDescription                                       |
+        Details |
+
+        |---------------------|------------------------------------------------------------|---------|
+
+        | 30001               | Podmiot lub uprawnienie już istnieje.  |  |
+
+        | 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora}
+        |'
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/exception_response.yaml
+      x-summary: Bad Request

@@ -1,0 +1,24 @@
+required:
+- accessToken
+- refreshToken
+type: object
+properties:
+  accessToken:
+    required:
+    - token
+    - validUntil
+    allOf:
+    - $ref: token_info.yaml
+    description: Token dostępu.
+  refreshToken:
+    required:
+    - token
+    - validUntil
+    allOf:
+    - $ref: token_info.yaml
+    description: 'Token umożliwiający odświeżenie tokenu dostępu.
+
+      > Więcej informacji:
+
+      > - [Odświeżanie tokena](https://github.com/CIRFMF/ksef-docs/blob/main/uwierzytelnianie.md#od%C5%9Bwie%C5%BCenie-tokena-accesstoken)'
+additionalProperties: false

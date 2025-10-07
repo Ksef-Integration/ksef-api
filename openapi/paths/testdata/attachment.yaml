@@ -1,0 +1,26 @@
+post:
+  tags:
+  - TestData
+  summary: Umożliwienie wysyłania faktur z załącznikiem
+  description: Dodaje możliwość wysyłania faktur z załącznikiem przez wskazany podmiot
+  requestBody:
+    content:
+      application/json:
+        schema:
+          allOf:
+          - $ref: ../../components/schemas/attachment_permission_grant_request.yaml
+  responses:
+    '200':
+      description: OK
+    '400':
+      description: '| ExceptionCode | ExceptionDescription | Details |
+
+        |-|-|-|
+
+        | 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora}
+        |'
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/exception_response.yaml
+      x-summary: Bad Request

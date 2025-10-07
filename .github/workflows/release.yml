@@ -18,8 +18,8 @@ jobs:
 
       - name: Configure Git user
         run: |
-          git config --global user.email "ci@calendar-api.com"
-          git config --global user.name "Calendar API CI"
+          git config --global user.email "ci@ksef-api.com"
+          git config --global user.name "KSeF API CI"
 
       - name: Setup Java
         uses: actions/setup-java@v4

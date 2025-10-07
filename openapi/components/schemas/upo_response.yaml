@@ -1,0 +1,10 @@
+required:
+- pages
+type: object
+properties:
+  pages:
+    type: array
+    items:
+      $ref: upo_page_response.yaml
+    description: Lista stron UPO.
+additionalProperties: false

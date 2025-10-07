@@ -1,0 +1,17 @@
+type: object
+properties:
+  vatUeIdentifier:
+    type: string
+    description: Identyfikator podmiotu unijnego.
+    nullable: true
+  authorizedFingerprintIdentifier:
+    type: string
+    description: Uprawniony odcisk palca certyfikatu.
+    nullable: true
+  permissionTypes:
+    type: array
+    items:
+      $ref: eu_entity_permissions_query_permission_type.yaml
+    description: Możliwe uprawnienia do filtrowania.
+    nullable: true
+additionalProperties: false

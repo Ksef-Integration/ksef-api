@@ -1,0 +1,161 @@
+required:
+- acquisitionDate
+- buyer
+- currency
+- formCode
+- grossAmount
+- hasAttachment
+- invoiceHash
+- invoiceNumber
+- invoiceType
+- invoicingDate
+- invoicingMode
+- isSelfInvoicing
+- issueDate
+- ksefNumber
+- netAmount
+- permanentStorageDate
+- seller
+- vatAmount
+type: object
+properties:
+  ksefNumber:
+    type: string
+    description: Numer KSeF faktury.
+  invoiceNumber:
+    type: string
+    description: Numer faktury nadany przez wystawcę.
+  issueDate:
+    type: string
+    description: Data wystawienia faktury.
+    format: date
+  invoicingDate:
+    type: string
+    description: Data przyjęcia faktury w systemie KSeF (do dalszego przetwarzania).
+    format: date-time
+  acquisitionDate:
+    type: string
+    description: Data nadania numeru KSeF.
+    format: date-time
+  permanentStorageDate:
+    type: string
+    description: Data trwałego zapisu faktury w repozytorium systemu KSeF.
+    format: date-time
+  seller:
+    required:
+    - nip
+    allOf:
+    - $ref: invoice_metadata_seller.yaml
+    description: Dane identyfikujące sprzedawcę.
+  buyer:
+    required:
+    - identifier
+    allOf:
+    - $ref: invoice_metadata_buyer.yaml
+    description: Dane identyfikujące nabywcę.
+  netAmount:
+    type: number
+    description: Łączna kwota netto.
+    format: double
+  grossAmount:
+    type: number
+    description: Łączna kwota brutto.
+    format: double
+  vatAmount:
+    type: number
+    description: Łączna kwota VAT.
+    format: double
+  currency:
+    type: string
+    description: Kod waluty.
+  invoicingMode:
+    allOf:
+    - $ref: invoicing_mode.yaml
+    description: Tryb fakturowania (online/offline).
+  invoiceType:
+    allOf:
+    - $ref: invoice_type.yaml
+    description: 'Rodzaj faktury.
+
+      | Wartość | Opis |
+
+      | --- | --- |
+
+      | Vat | (FA) Podstawowa |
+
+      | Zal | (FA) Zaliczkowa |
+
+      | Kor | (FA) Korygująca |
+
+      | Roz | (FA) Rozliczeniowa |
+
+      | Upr | (FA) Uproszczona |
+
+      | KorZal | (FA) Korygująca fakturę zaliczkową |
+
+      | KorRoz | (FA) Korygująca fakturę rozliczeniową |
+
+      | VatPef | (PEF) Podstawowowa |
+
+      | VatPefSp | (PEF) Specjalizowana |
+
+      | KorPef | (PEF) Korygująca |
+
+      | VatRr | (RR) Podstawowa |
+
+      | KorVatRr | (RR) Korygująca |
+
+      '
+  formCode:
+    required:
+    - systemCode
+    - schemaVersion
+    - value
+    allOf:
+    - $ref: form_code.yaml
+    description: 'Struktura dokumentu faktury.
+
+
+      Obsługiwane schematy:
+
+      | SystemCode | SchemaVersion | Value |
+
+      | --- | --- | --- |
+
+      | FA (2) | 1-0E | FA |
+
+      | FA (3) | 1-0E | FA |
+
+      | FA_PEF (3) | 2-1 | FA_PEF |
+
+      | FA_KOR_PEF (3) | 2-1 | FA_PEF |
+
+      '
+  isSelfInvoicing:
+    type: boolean
+    description: Czy faktura została wystawiona w trybie samofakturowania.
+  hasAttachment:
+    type: boolean
+    description: Określa, czy faktura posiada załącznik.
+  invoiceHash:
+    type: string
+    description: Skrót SHA256 faktury.
+  hashOfCorrectedInvoice:
+    type: string
+    description: Skrót SHA256 korygowanej faktury.
+    nullable: true
+  thirdSubjects:
+    type: array
+    items:
+      $ref: invoice_metadata_third_subject.yaml
+    description: Lista podmiotów trzecich.
+    nullable: true
+  authorizedSubject:
+    required:
+    - nip
+    - role
+    allOf:
+    - $ref: invoice_metadata_authorized_subject.yaml
+    description: Podmiot upoważniony.
+    nullable: true
+additionalProperties: false

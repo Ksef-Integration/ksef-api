@@ -1,0 +1,8 @@
+type: object
+properties:
+  operationReferenceNumber:
+    type: string
+    description: Numer referencyjny asynchronicznej operacji nadawania lub odbierania
+      uprawnień.
+    nullable: true
+additionalProperties: false

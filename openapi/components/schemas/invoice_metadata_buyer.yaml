@@ -1,0 +1,15 @@
+required:
+- identifier
+type: object
+properties:
+  identifier:
+    required:
+    - type
+    allOf:
+    - $ref: invoice_metadata_buyer_identifier.yaml
+    description: Identyfikator nabywcy.
+  name:
+    type: string
+    description: Nazwa nabywcy.
+    nullable: true
+additionalProperties: false

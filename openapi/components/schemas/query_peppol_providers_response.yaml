@@ -1,0 +1,14 @@
+required:
+- hasMore
+- peppolProviders
+type: object
+properties:
+  peppolProviders:
+    type: array
+    items:
+      $ref: peppol_provider.yaml
+    description: Lista dostawców usług Peppol.
+  hasMore:
+    type: boolean
+    description: Flaga informująca o dostępności kolejnej strony wyników.
+additionalProperties: false

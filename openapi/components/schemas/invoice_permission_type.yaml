@@ -1,0 +1,6 @@
+enum:
+- SelfInvoicing
+- TaxRepresentative
+- RRInvoicing
+- PefInvoicing
+type: string

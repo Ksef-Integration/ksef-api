@@ -1,0 +1,16 @@
+type: object
+properties:
+  contextIdentifier:
+    allOf:
+    - $ref: test_data_context_identifier.yaml
+    nullable: true
+  authorizedIdentifier:
+    allOf:
+    - $ref: test_data_authorized_identifier.yaml
+    nullable: true
+  permissions:
+    type: array
+    items:
+      $ref: test_data_permission.yaml
+    nullable: true
+additionalProperties: false

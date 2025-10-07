@@ -1,0 +1,17 @@
+enum:
+- Unspecified
+- Superseded
+- KeyCompromise
+type: string
+description: '| Wartość | Opis |
+
+  | --- | --- |
+
+  | Unspecified | Nieokreślony. |
+
+  | Superseded | Certyfikat został zastąpiony przez inny. |
+
+  | KeyCompromise | Klucz prywatny powiązany z certyfikatem został skompromitowany.
+  |
+
+  '

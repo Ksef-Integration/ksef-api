@@ -1,0 +1,61 @@
+post:
+  tags:
+  - GrantPermissions
+  summary: Nadanie uprawnień administratora podmiotu podrzędnego
+  description: 'Rozpoczyna asynchroniczną operację nadawania uprawnień administratora
+    podmiotu podrzędnego.
+
+
+    > Więcej informacji:
+
+    > - [Nadawanie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#nadanie-uprawnie%C5%84-administratora-podmiotu-podrz%C4%99dnego)
+
+
+    Wymagane uprawnienia: `SubunitManage`.'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          required:
+          - subjectIdentifier
+          - contextIdentifier
+          - description
+          allOf:
+          - $ref: ../../components/schemas/subunit_permissions_grant_request.yaml
+        example:
+          subjectIdentifier:
+            type: Pesel
+            value: '15062788702'
+          contextIdentifier:
+            type: InternalId
+            value: 7762811692-11111
+          description: Administrator jednostki podrzędnej
+  responses:
+    '202':
+      description: Accepted
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/permissions_operation_response.yaml
+          example:
+            operationReferenceNumber: 20250626-EG-333C814000-C529F710D8-D2
+    '400':
+      description: '| ExceptionCode | ExceptionDescription | Details |
+
+        |-|-|-|
+
+        | 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora}
+        |'
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/exception_response.yaml
+      x-summary: Bad Request
+    '401':
+      description: Unauthorized
+    '403':
+      description: Forbidden
+  security:
+  - Bearer: []
+  x-required-permissions:
+  - SubunitManage

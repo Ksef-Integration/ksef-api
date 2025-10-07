@@ -1,0 +1,39 @@
+required:
+- encryption
+- formCode
+type: object
+properties:
+  formCode:
+    required:
+    - systemCode
+    - schemaVersion
+    - value
+    allOf:
+    - $ref: form_code.yaml
+    description: 'Schemat faktur wysyłanych w ramach sesji.
+
+
+      Obsługiwane schematy:
+
+      | SystemCode | SchemaVersion | Value |
+
+      | --- | --- | --- |
+
+      | FA (2) | 1-0E | FA |
+
+      | FA (3) | 1-0E | FA |
+
+      | FA_PEF (3) | 2-1 | FA_PEF |
+
+      | FA_KOR_PEF (3) | 2-1 | FA_PEF |
+
+      '
+  encryption:
+    required:
+    - encryptedSymmetricKey
+    - initializationVector
+    allOf:
+    - $ref: encryption_info.yaml
+    description: Symetryczny klucz szyfrujący pliki XML, zaszyfrowany kluczem publicznym
+      Ministerstwa Finansów.
+additionalProperties: false

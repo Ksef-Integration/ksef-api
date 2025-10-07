@@ -1,0 +1,37 @@
+required:
+- encryptedInvoiceContent
+- encryptedInvoiceHash
+- encryptedInvoiceSize
+- invoiceHash
+- invoiceSize
+type: object
+properties:
+  invoiceHash:
+    type: string
+    description: Skrót SHA256 oryginalnej faktury, zakodowany w formacie Base64.
+  invoiceSize:
+    type: integer
+    description: Rozmiar oryginalnej faktury w bajtach.
+    format: int64
+  encryptedInvoiceHash:
+    type: string
+    description: Skrót SHA256 zaszyfrowanej faktury, zakodowany w formacie Base64.
+  encryptedInvoiceSize:
+    type: integer
+    description: Rozmiar zaszyfrowanej faktury w bajtach.
+    format: int64
+  encryptedInvoiceContent:
+    type: string
+    description: Faktura zaszyfrowana algorytmem AES-256-CBC z dopełnianiem PKCS#7
+      (kluczem przekazanym przy otwarciu sesji), zakodowana w formacie Base64.
+  offlineMode:
+    type: boolean
+    description: Określa, czy podatnik deklaruje tryb fakturowania "offline" dla przesyłanego
+      dokumentu.
+    default: false
+  hashOfCorrectedInvoice:
+    type: string
+    description: Skrót SHA256 korygowanej faktury, zakodowany w formacie Base64. Wymagany
+      przy wysyłaniu korekty technicznej faktury.
+    nullable: true
+additionalProperties: false

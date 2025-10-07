@@ -1,0 +1,40 @@
+get:
+  tags:
+  - Operations
+  summary: Pobranie statusu operacji
+  description: Zwraca status operacji asynchronicznej związanej z nadaniem lub odebraniem
+    uprawnień.
+  parameters:
+  - name: operationReferenceNumber
+    in: path
+    description: Numer referencyjny operacji
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/permissions_operation_status_response.yaml
+          example:
+            status:
+              code: 200
+              description: Operacja zakończona sukcesem
+    '400':
+      description: '| ExceptionCode | ExceptionDescription | Details |
+
+        |-|-|-|
+
+        | 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora}
+        |'
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/exception_response.yaml
+      x-summary: Bad Request
+    '401':
+      description: Unauthorized
+  security:
+  - Bearer: []

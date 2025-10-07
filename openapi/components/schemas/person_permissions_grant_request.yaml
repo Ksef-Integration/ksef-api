@@ -1,0 +1,32 @@
+required:
+- description
+- permissions
+- subjectIdentifier
+type: object
+properties:
+  subjectIdentifier:
+    required:
+    - type
+    - value
+    allOf:
+    - $ref: person_permissions_subject_identifier.yaml
+    description: 'Identyfikator osoby fizycznej.
+
+      | Type | Value |
+
+      | --- | --- |
+
+      | Nip | 10 cyfrowy numer NIP |
+
+      | Pesel | 11 cyfrowy numer PESEL |
+
+      | Fingerprint | Odcisk palca certyfikatu |'
+  permissions:
+    type: array
+    items:
+      $ref: person_permission_type.yaml
+    description: Lista nadawanych uprawnień. Każda wartość może wystąpić tylko raz.
+  description:
+    type: string
+    description: Opis nadawanych uprawnień.
+additionalProperties: false

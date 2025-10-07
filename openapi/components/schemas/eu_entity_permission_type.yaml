@@ -1,0 +1,4 @@
+enum:
+- InvoiceWrite
+- InvoiceRead
+type: string

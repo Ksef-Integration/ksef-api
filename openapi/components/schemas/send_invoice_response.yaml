@@ -1,0 +1,8 @@
+required:
+- referenceNumber
+type: object
+properties:
+  referenceNumber:
+    type: string
+    description: Numer referencyjny faktury.
+additionalProperties: false

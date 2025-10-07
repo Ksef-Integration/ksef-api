@@ -1,0 +1,16 @@
+required:
+- authenticationToken
+- referenceNumber
+type: object
+properties:
+  referenceNumber:
+    type: string
+    description: Numer referencyjny operacji uwierzytelnienia.
+  authenticationToken:
+    required:
+    - token
+    - validUntil
+    allOf:
+    - $ref: token_info.yaml
+    description: Token operacji uwierzytelnienia.
+additionalProperties: false

@@ -1,0 +1,14 @@
+required:
+- hasMore
+- permissions
+type: object
+properties:
+  permissions:
+    type: array
+    items:
+      $ref: eu_entity_permission.yaml
+    description: Lista uprawnień.
+  hasMore:
+    type: boolean
+    description: Flaga informująca o dostępności kolejnej strony wyników.
+additionalProperties: false

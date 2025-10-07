@@ -1,0 +1,23 @@
+type: object
+properties:
+  ordinalNumber:
+    type: integer
+    description: Numer sekwencyjny części pliku paczki.
+    format: int32
+  method:
+    type: string
+    description: Metoda HTTP, której należy użyć przy wysyłce części pliku paczki.
+    nullable: true
+  url:
+    type: string
+    description: Adres pod który należy wysłać część pliku paczki.
+    format: uri
+    nullable: true
+  headers:
+    type: object
+    additionalProperties:
+      type: string
+      nullable: true
+    description: Nagłówki, których należy użyć przy wysyłce części pliku paczki.
+    nullable: true
+additionalProperties: false

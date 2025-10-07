@@ -1,0 +1,14 @@
+required:
+- authorizationGrants
+- hasMore
+type: object
+properties:
+  authorizationGrants:
+    type: array
+    items:
+      $ref: entity_authorization_grant.yaml
+    description: Lista uprawnień.
+  hasMore:
+    type: boolean
+    description: Flaga informująca o dostępności kolejnej strony wyników.
+additionalProperties: false

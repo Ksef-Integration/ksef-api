@@ -1,0 +1,61 @@
+post:
+  tags:
+  - SearchPermissions
+  summary: Pobranie listy własnych uprawnień
+  description: 'Zwraca listę uprawnień przysługujących uwierzytelnionemu podmiotowi.
+
+
+    > Więcej informacji:
+
+    > - [Pobieranie listy uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#pobranie-listy-w%C5%82asnych-uprawnie%C5%84)'
+  parameters:
+  - name: pageOffset
+    in: query
+    description: Numer strony wyników.
+    schema:
+      type: integer
+      format: int32
+  - name: pageSize
+    in: query
+    description: Rozmiar strony wyników.
+    schema:
+      type: integer
+      format: int32
+  requestBody:
+    content:
+      application/json:
+        schema:
+          allOf:
+          - $ref: ../../components/schemas/personal_permissions_query_request.yaml
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/query_personal_permissions_response.yaml
+          example:
+            permissions:
+            - id: 0c9a72e8-f344-457f-9c16-7c640eb60242
+              permissionScope: InvoiceWrite
+              description: Uprawnienie do odczytu faktur
+              permissionState: Active
+              startDate: '2025-06-22T10:41:11+00:00'
+              canDelegate: false
+            hasMore: false
+    '400':
+      description: '| ExceptionCode | ExceptionDescription | Details |
+
+        |-|-|-|
+
+        | 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora}
+        |'
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/exception_response.yaml
+      x-summary: Bad Request
+    '401':
+      description: Unauthorized
+  security:
+  - Bearer: []

@@ -1,0 +1,67 @@
+delete:
+  tags:
+  - RevokePermissions
+  summary: Odebranie uprawnień
+  description: 'Rozpoczyna asynchroniczną operacje odbierania uprawnienia o podanym
+    identyfikatorze.
+
+
+    Ta metoda służy do odbierania uprawnień takich jak:
+
+    - nadanych nadanych osobom fizycznym lub podmiotom do pracy w KSeF
+
+    - nadanych podmiotom do obsługi faktur
+
+    - nadanych w sposób pośredni
+
+    - administratorów jednostek i podmiotów podrzędnych
+
+    - administratorów podmiotów unijnych uprawnionych do samofakturowania
+
+    - reprezentantów podmiotów unijnych
+
+
+    > Więcej informacji:
+
+    > - [Odbieranie uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#odebranie-uprawnie%C5%84)
+
+
+    Wymagane uprawnienia: `CredentialsManage`, `VatUeManage`, `SubunitManage`.'
+  parameters:
+  - name: permissionId
+    in: path
+    description: Id uprawnienia.
+    required: true
+    schema:
+      type: string
+  responses:
+    '202':
+      description: Accepted
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/permissions_operation_response.yaml
+          example:
+            operationReferenceNumber: 20250626-EG-333C814000-C529F710D8-D2
+    '400':
+      description: '| ExceptionCode | ExceptionDescription | Details |
+
+        |-|-|-|
+
+        | 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora}
+        |'
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/exception_response.yaml
+      x-summary: Bad Request
+    '401':
+      description: Unauthorized
+    '403':
+      description: Forbidden
+  security:
+  - Bearer: []
+  x-required-permissions:
+  - CredentialsManage
+  - VatUeManage
+  - SubunitManage

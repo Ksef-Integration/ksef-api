@@ -1,0 +1,20 @@
+required:
+- type
+- value
+type: object
+properties:
+  type:
+    allOf:
+    - $ref: entity_authorization_permissions_subject_identifier_type.yaml
+    description: Typ identyfikatora.
+  value:
+    type: string
+    description: Wartość identyfikatora.
+additionalProperties: false
+description: 'Identyfikator podmiotu.
+
+  | Type | Value |
+
+  | --- | --- |
+
+  | Nip | 10 cyfrowy numer NIP |'

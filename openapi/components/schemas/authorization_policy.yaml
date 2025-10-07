@@ -1,0 +1,8 @@
+type: object
+properties:
+  allowedIps:
+    allOf:
+    - $ref: allowed_ips.yaml
+    description: Lista dozwolonych adresów IP.
+    nullable: true
+additionalProperties: false

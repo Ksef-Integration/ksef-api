@@ -1,0 +1,6 @@
+type: object
+properties:
+  nip:
+    type: string
+    nullable: true
+additionalProperties: false

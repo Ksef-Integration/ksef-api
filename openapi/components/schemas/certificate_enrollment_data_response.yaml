@@ -1,0 +1,36 @@
+required:
+- commonName
+- countryName
+type: object
+properties:
+  commonName:
+    type: string
+    description: Nazwa powszechna.
+  countryName:
+    type: string
+    description: Kraj, kod ISO 3166.
+  givenName:
+    type: string
+    description: Imię.
+    nullable: true
+  surname:
+    type: string
+    description: Nazwisko.
+    nullable: true
+  serialNumber:
+    type: string
+    description: Numer seryjny podmiotu.
+    nullable: true
+  uniqueIdentifier:
+    type: string
+    description: Unikalny identyfikator.
+    nullable: true
+  organizationName:
+    type: string
+    description: Nazwa organizacji.
+    nullable: true
+  organizationIdentifier:
+    type: string
+    description: Identyfikator organizacji.
+    nullable: true
+additionalProperties: false

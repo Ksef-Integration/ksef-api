@@ -1,0 +1,44 @@
+post:
+  tags:
+  - Certificates
+  summary: Unieważnienie certyfikatu
+  description: Unieważnia certyfikat o podanym numerze seryjnym.
+  parameters:
+  - name: certificateSerialNumber
+    in: path
+    description: Numer seryjny certyfikatu (w formacie szesnastkowym).
+    required: true
+    schema:
+      type: string
+  requestBody:
+    description: ''
+    content:
+      application/json:
+        schema:
+          allOf:
+          - $ref: ../../components/schemas/revoke_certificate_request.yaml
+  responses:
+    '204':
+      description: No Content
+    '400':
+      description: '| ExceptionCode       | ExceptionDescription                                                                           |
+        Details |
+
+        |---------------------|------------------------------------------------------------------------------------------------|---------|
+
+        | 25008               | Certyfikat o podanym numerze seryjnym nie istnieje.                                            |         |
+
+        | 25009               | Nie można odwołać wskazanego certyfikatu, ponieważ
+        jest już odwołany, zablokowany lub nieważny.|         |
+
+        | 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora}
+        |'
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/exception_response.yaml
+      x-summary: Bad Request
+    '401':
+      description: Unauthorized
+  security:
+  - Bearer: []

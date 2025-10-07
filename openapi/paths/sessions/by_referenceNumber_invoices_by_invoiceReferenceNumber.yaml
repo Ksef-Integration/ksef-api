@@ -1,0 +1,60 @@
+get:
+  tags:
+  - InvoiceStatus
+  summary: Pobranie statusu faktury z sesji
+  description: 'Zwraca fakturę przesłaną w sesji wraz ze statusem.
+
+
+    Wymagane uprawnienia: `InvoiceWrite`, `Introspection`, `PefInvoiceWrite`.'
+  parameters:
+  - name: referenceNumber
+    in: path
+    description: Numer referencyjny sesji.
+    required: true
+    schema:
+      type: string
+  - name: invoiceReferenceNumber
+    in: path
+    description: Numer referencyjny faktury.
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/session_invoice_status_response.yaml
+          example:
+            ordinalNumber: 2
+            referenceNumber: 20250626-EE-2F20AD2000-242386DF86-52
+            invoicingDate: '2025-07-11T12:23:56.0154302+00:00'
+            status:
+              code: 440
+              description: Duplikat faktury
+              details:
+              - 'Duplikat faktury. Faktura o numerze KSeF: 5265877635-20250626-010080DD2B5E-26
+                została już prawidłowo przesłana do systemu w sesji: 20250626-SO-2F14610000-242991F8C9-B4'
+    '400':
+      description: '| ExceptionCode | ExceptionDescription | Details |
+
+        |-|-|-|
+
+        | 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora}
+        |'
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/exception_response.yaml
+      x-summary: Bad Request
+    '401':
+      description: Unauthorized
+    '403':
+      description: Forbidden
+  security:
+  - Bearer: []
+  x-required-permissions:
+  - InvoiceWrite
+  - Introspection
+  - PefInvoiceWrite

@@ -1,0 +1,51 @@
+post:
+  tags:
+  - DownloadInvoices
+  summary: Eksport paczki faktur
+  description: 'Rozpoczyna asynchroniczny proces wyszukiwania faktur w systemie KSeF
+    na podstawie przekazanych filtrów oraz przygotowania ich w formie zaszyfrowanej
+    paczki.
+
+    Wymagane jest przekazanie informacji o szyfrowaniu w polu `Encryption`, które
+    służą do zabezpieczenia przygotowanej paczki z fakturami.
+
+
+    Wymagane uprawnienia: `InvoiceRead`.'
+  requestBody:
+    description: Dane wejściowe określające kryteria i format eksportu paczki faktur.
+    content:
+      application/json:
+        schema:
+          required:
+          - encryption
+          - filters
+          allOf:
+          - $ref: ../../components/schemas/invoice_export_request.yaml
+  responses:
+    '201':
+      description: Created
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/export_invoices_response.yaml
+    '400':
+      description: "| ExceptionCode       | ExceptionDescription                 \
+        \               | Details                                                \
+        \       | \n|---------------------|-----------------------------------------------------|---------------------------------------------------------------|\n\
+        | 21181               | Nieprawidłowe żądanie eksportu faktur.           \
+        \   | Nie można wyeksportować paczki faktur dla wybranego podmiotu ({subjecttype})\
+        \ i zalogowanego identyfikatoru kontekstu ({type}). |\n| 21405 | Błąd walidacji\
+        \ danych wejściowych. | {treść błędu z walidatora} |"
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/exception_response.yaml
+      x-summary: Bad Request
+    '401':
+      description: Unauthorized
+    '403':
+      description: Forbidden
+  security:
+  - Bearer: []
+  x-required-permissions:
+  - InvoiceRead

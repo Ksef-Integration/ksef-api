@@ -1,0 +1,102 @@
+get:
+  tags:
+  - Authentication
+  summary: Pobranie statusu uwierzytelniania
+  description: 'Sprawdza bieżący status operacji uwierzytelniania dla podanego tokena.
+
+
+    Sposób uwierzytelnienia: `AuthenticationToken` otrzymany przy rozpoczęciu operacji
+    uwierzytelniania.'
+  parameters:
+  - name: referenceNumber
+    in: path
+    description: Numer referencyjny tokena otrzymanego przy inicjalizacji operacji
+      uwierzytelniania.
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/authentication_operation_status_response.yaml
+          examples:
+            Kod 100 | Uwierzytelnianie w toku:
+              value:
+                startDate: '0001-01-01T00:00:00+00:00'
+                authenticationMethod: Token
+                status:
+                  code: 100
+                  description: Uwierzytelnianie w toku
+            Kod 200 | Uwierzytelnianie zakończone sukcesem:
+              value:
+                startDate: '0001-01-01T00:00:00+00:00'
+                authenticationMethod: Token
+                status:
+                  code: 200
+                  description: Uwierzytelnianie zakończone sukcesem
+            Kod 400 | Uwierzytelnianie zakończone niepowodzeniem | Nieważny certyfikat:
+              value:
+                startDate: '0001-01-01T00:00:00+00:00'
+                authenticationMethod: Token
+                status:
+                  code: 400
+                  description: Uwierzytelnianie zakończone niepowodzeniem
+                  details:
+                  - Nieważny certyfikat.
+            Kod 400 | Uwierzytelnianie zakończone niepowodzeniem | Błąd weryfikacji łańcucha certyfikatów:
+              value:
+                startDate: '0001-01-01T00:00:00+00:00'
+                authenticationMethod: Token
+                status:
+                  code: 400
+                  description: Uwierzytelnianie zakończone niepowodzeniem
+                  details:
+                  - Błąd weryfikacji łańcucha certyfikatów.
+            Kod 400 | Uwierzytelnianie zakończone niepowodzeniem | Niezaufany łańcuch certyfikatów:
+              value:
+                startDate: '0001-01-01T00:00:00+00:00'
+                authenticationMethod: Token
+                status:
+                  code: 400
+                  description: Uwierzytelnianie zakończone niepowodzeniem
+                  details:
+                  - Niezaufany łańcuch certyfikatów.
+            Kod 400 | Uwierzytelnianie zakończone niepowodzeniem | Certyfikat odwołany:
+              value:
+                startDate: '0001-01-01T00:00:00+00:00'
+                authenticationMethod: Token
+                status:
+                  code: 400
+                  description: Uwierzytelnianie zakończone niepowodzeniem
+                  details:
+                  - Certyfikat odwołany.
+            Kod 400 | Uwierzytelnianie zakończone niepowodzeniem | Niepoprawny certyfikat:
+              value:
+                startDate: '0001-01-01T00:00:00+00:00'
+                authenticationMethod: Token
+                status:
+                  code: 400
+                  description: Uwierzytelnianie zakończone niepowodzeniem
+                  details:
+                  - Niepoprawny certyfikat.
+            Kod 500 | Nieznany błąd:
+              value:
+                startDate: '0001-01-01T00:00:00+00:00'
+                authenticationMethod: Token
+                status:
+                  code: 500
+                  description: Nieznany błąd ({statusCode})
+    '400':
+      description: ''
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/exception_response.yaml
+      x-summary: Bad Request
+    '401':
+      description: Unauthorized
+  security:
+  - Bearer: []

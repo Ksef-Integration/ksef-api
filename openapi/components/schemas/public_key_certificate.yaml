@@ -1,0 +1,36 @@
+required:
+- certificate
+- usage
+- validFrom
+- validTo
+type: object
+properties:
+  certificate:
+    type: string
+    description: Certyfikat klucza publicznego w formacie DER zakodowany w Base64.
+  validFrom:
+    type: string
+    description: Data początku obowiązywania certyfikatu.
+    format: date-time
+  validTo:
+    type: string
+    description: Data końca obowiązywania certyfikatu.
+    format: date-time
+  usage:
+    type: array
+    items:
+      $ref: public_key_certificate_usage.yaml
+    description: 'Operacje do których może być używany certyfikat.
+
+      | Wartość | Opis |
+
+      | --- | --- |
+
+      | KsefTokenEncryption | Szyfrowanie tokenów KSeF przesyłanych w trakcie procesu
+      uwierzytelniania. |
+
+      | SymmetricKeyEncryption | Szyfrowanie klucza symetrycznego wykorzystywanego
+      do szyfrowania przesyłanych faktur. |
+
+      '
+additionalProperties: false

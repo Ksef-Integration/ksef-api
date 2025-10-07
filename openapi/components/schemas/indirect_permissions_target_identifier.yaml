@@ -1,0 +1,26 @@
+required:
+- type
+type: object
+properties:
+  type:
+    allOf:
+    - $ref: indirect_permissions_target_identifier_type.yaml
+    description: Typ identyfikatora.
+  value:
+    type: string
+    description: Wartość identyfikatora. W przypadku typu AllPartners należy pozostawić
+      puste. W pozostałych przypadkach pole jest wymagane.
+    nullable: true
+additionalProperties: false
+description: 'Identyfikator podmiotu, w którego kontekście chcemy pośrednio nadać
+  uprawnienia. W przypadku nadawania uprawnienia generalnego, pole to powinno mieć
+  wartość null.
+
+  | Type | Value |
+
+  | --- | --- |
+
+  | Nip | 10 cyfrowy numer NIP |
+
+  | AllPartners | Identyfikator oznaczający, że uprawnienie nadane w sposób pośredni
+  jest typu generalnego |'

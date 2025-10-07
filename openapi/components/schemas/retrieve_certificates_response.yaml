@@ -1,0 +1,10 @@
+required:
+- certificates
+type: object
+properties:
+  certificates:
+    type: array
+    items:
+      $ref: retrieve_certificates_list_item.yaml
+    description: Pobrane certyfikaty.
+additionalProperties: false

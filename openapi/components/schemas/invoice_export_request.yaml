@@ -1,0 +1,20 @@
+required:
+- encryption
+- filters
+type: object
+properties:
+  encryption:
+    required:
+    - encryptedSymmetricKey
+    - initializationVector
+    allOf:
+    - $ref: encryption_info.yaml
+    description: Informacje wymagane do zaszyfrowania wyniku zapytania.
+  filters:
+    required:
+    - subjectType
+    - dateRange
+    allOf:
+    - $ref: invoice_query_filters.yaml
+    description: Zestaw filtrów do wyszukiwania faktur.
+additionalProperties: false

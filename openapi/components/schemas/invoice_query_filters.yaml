@@ -1,0 +1,132 @@
+required:
+- dateRange
+- subjectType
+type: object
+properties:
+  subjectType:
+    allOf:
+    - $ref: invoice_query_subject_type.yaml
+    description: 'Typ podmiotu, którego dotyczą kryteria filtrowania metadanych faktur.
+
+      Określa kontekst, w jakim przeszukiwane są dane.
+
+      | Wartość | Opis |
+
+      | --- | --- |
+
+      | Subject1 | Podmiot 1 |
+
+      | Subject2 | Podmiot 2 |
+
+      | Subject3 | Podmiot 3 |
+
+      | SubjectAuthorized | Podmiot upoważniony |
+
+      '
+  dateRange:
+    required:
+    - dateType
+    - from
+    allOf:
+    - $ref: invoice_query_date_range.yaml
+    description: Typ i zakres dat, według którego mają być filtrowane faktury. Dozwolony
+      maksymalny okres wynosi 2 lata.
+  ksefNumber:
+    type: string
+    description: Numer KSeF faktury.
+    nullable: true
+  invoiceNumber:
+    type: string
+    description: Numer faktury nadany przez wystawcę.
+    nullable: true
+  amount:
+    required:
+    - type
+    allOf:
+    - $ref: invoice_query_amount.yaml
+    description: Filtr kwotowy – brutto, netto lub VAT (z wartością).
+    nullable: true
+  sellerNip:
+    type: string
+    description: Nip sprzedawcy.
+    nullable: true
+  buyerIdentifier:
+    required:
+    - type
+    allOf:
+    - $ref: invoice_query_buyer_identifier.yaml
+    description: Identyfikator nabywcy.
+    nullable: true
+  currencyCodes:
+    type: array
+    items:
+      $ref: currency_code.yaml
+    description: Kody walut.
+    nullable: true
+  invoicingMode:
+    allOf:
+    - $ref: invoicing_mode.yaml
+    description: 'Tryb wystawienia faktury: online lub offline.'
+    nullable: true
+  isSelfInvoicing:
+    type: boolean
+    description: Czy faktura została wystawiona w trybie samofakturowania.
+    nullable: true
+  formType:
+    allOf:
+    - $ref: invoice_query_form_type.yaml
+    description: 'Typ dokumentu.
+
+      | Wartość | Opis |
+
+      | --- | --- |
+
+      | FA | Faktura VAT |
+
+      | PEF | Faktura PEF |
+
+      | RR | Faktura RR |
+
+      '
+    nullable: true
+  invoiceTypes:
+    type: array
+    items:
+      $ref: invoice_type.yaml
+    description: 'Rodzaje faktur.
+
+      | Wartość | Opis |
+
+      | --- | --- |
+
+      | Vat | (FA) Podstawowa |
+
+      | Zal | (FA) Zaliczkowa |
+
+      | Kor | (FA) Korygująca |
+
+      | Roz | (FA) Rozliczeniowa |
+
+      | Upr | (FA) Uproszczona |
+
+      | KorZal | (FA) Korygująca fakturę zaliczkową |
+
+      | KorRoz | (FA) Korygująca fakturę rozliczeniową |
+
+      | VatPef | (PEF) Podstawowowa |
+
+      | VatPefSp | (PEF) Specjalizowana |
+
+      | KorPef | (PEF) Korygująca |
+
+      | VatRr | (RR) Podstawowa |
+
+      | KorVatRr | (RR) Korygująca |
+
+      '
+    nullable: true
+  hasAttachment:
+    type: boolean
+    description: Czy faktura ma załącznik.
+    nullable: true
+additionalProperties: false

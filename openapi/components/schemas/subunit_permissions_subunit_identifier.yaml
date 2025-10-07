@@ -1,0 +1,23 @@
+required:
+- type
+- value
+type: object
+properties:
+  type:
+    allOf:
+    - $ref: subunit_permissions_subunit_identifier_type.yaml
+    description: Typ identyfikatora.
+  value:
+    type: string
+    description: Wartość identyfikatora.
+additionalProperties: false
+description: 'Identyfikator jednostki lub podmiotu podrzędnego.
+
+  | Type | Value |
+
+  | --- | --- |
+
+  | InternalId | Dwuczłonowy identyfikator składający się z numeru NIP i 5 cyfr: `{nip}-{5_cyfr}`
+  |
+
+  | Nip | 10 cyfrowy numer NIP |'

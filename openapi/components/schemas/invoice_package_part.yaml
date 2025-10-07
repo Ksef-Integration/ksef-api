@@ -1,0 +1,46 @@
+required:
+- encryptedPartHash
+- encryptedPartSize
+- expirationDate
+- method
+- ordinalNumber
+- partHash
+- partName
+- partSize
+- url
+type: object
+properties:
+  ordinalNumber:
+    type: integer
+    description: Numer sekwencyjny pliku części paczki.
+    format: int32
+  partName:
+    type: string
+    description: Nazwa pliku części paczki.
+  method:
+    type: string
+    description: Metoda HTTP, której należy użyć przy pobieraniu pliku.
+  url:
+    type: string
+    description: Adres URL, pod który należy wysłać żądanie pobrania.
+    format: uri
+  partSize:
+    type: integer
+    description: Rozmiar części paczki w bajtach. Maksymalny rozmiar części to 50MiB
+      (52 428 800 bajtów).
+    format: int64
+  partHash:
+    type: string
+    description: Skrót SHA256 pliku części paczki, zakodowany w formacie Base64.
+  encryptedPartSize:
+    type: integer
+    description: Rozmiar zaszyfrowanej części paczki w bajtach.
+    format: int64
+  encryptedPartHash:
+    type: string
+    description: Skrót SHA256 zaszyfrowanej części paczki, zakodowany w formacie Base64.
+  expirationDate:
+    type: string
+    description: Moment wygaśnięcia linku do pobrania części.
+    format: date-time
+additionalProperties: false

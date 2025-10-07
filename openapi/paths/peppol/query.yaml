@@ -1,0 +1,37 @@
+get:
+  tags:
+  - PeppolServices
+  summary: Pobranie listy dostawców usług Peppol
+  description: Zwraca listę dostawców usług Peppol zarejestrowanych w systemie.
+  parameters:
+  - name: pageOffset
+    in: query
+    description: Numer strony wyników.
+    schema:
+      type: integer
+      format: int32
+  - name: pageSize
+    in: query
+    description: Rozmiar strony wyników.
+    schema:
+      type: integer
+      format: int32
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/query_peppol_providers_response.yaml
+          example:
+            peppolProviders:
+            - id: '1234567890'
+              name: Dostawca usług Peppol
+            hasMore: false
+    '400':
+      description: ''
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/exception_response.yaml
+      x-summary: Bad Request

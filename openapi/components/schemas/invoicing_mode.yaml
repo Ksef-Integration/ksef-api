@@ -1,0 +1,4 @@
+enum:
+- Online
+- Offline
+type: string

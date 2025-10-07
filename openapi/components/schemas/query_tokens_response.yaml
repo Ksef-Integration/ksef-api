@@ -1,0 +1,15 @@
+required:
+- tokens
+type: object
+properties:
+  continuationToken:
+    type: string
+    description: Token służący do pobrania kolejnej strony wyników. Jeśli jest pusty,
+      to nie ma kolejnych stron.
+    nullable: true
+  tokens:
+    type: array
+    items:
+      $ref: query_tokens_response_item.yaml
+    description: Lista tokenów uwierzytelniających.
+additionalProperties: false

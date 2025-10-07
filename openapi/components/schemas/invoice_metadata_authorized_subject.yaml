@@ -1,0 +1,17 @@
+required:
+- nip
+- role
+type: object
+properties:
+  nip:
+    type: string
+    description: Nip podmiotu upoważnionego
+  name:
+    type: string
+    description: Nazwa podmiotu upoważnionego.
+    nullable: true
+  role:
+    type: integer
+    description: Rola podmiotu upoważnionego.
+    format: int32
+additionalProperties: false

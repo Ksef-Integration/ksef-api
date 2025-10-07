@@ -1,0 +1,13 @@
+required:
+- challenge
+- timestamp
+type: object
+properties:
+  challenge:
+    type: string
+    description: Unikalny challenge.
+  timestamp:
+    type: string
+    description: Czas wygenerowania challenge-a.
+    format: date-time
+additionalProperties: false

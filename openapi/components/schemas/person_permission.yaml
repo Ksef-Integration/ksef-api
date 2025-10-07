@@ -1,0 +1,102 @@
+required:
+- authorIdentifier
+- authorizedIdentifier
+- canDelegate
+- description
+- id
+- permissionScope
+- permissionState
+- startDate
+type: object
+properties:
+  id:
+    type: string
+    description: Identyfikator uprawnienia.
+  authorizedIdentifier:
+    required:
+    - type
+    - value
+    allOf:
+    - $ref: person_permissions_authorized_identifier.yaml
+    description: 'Identyfikator osoby lub podmiotu uprawnionego.
+
+      | Type | Value |
+
+      | --- | --- |
+
+      | Nip | 10 cyfrowy numer NIP |
+
+      | Pesel | 11 cyfrowy numer PESEL |
+
+      | Fingerprint | Odcisk palca certyfikatu |'
+  contextIdentifier:
+    required:
+    - type
+    - value
+    allOf:
+    - $ref: person_permissions_context_identifier.yaml
+    description: 'Identyfikator kontekstu uprawnienia (dla uprawnień nadanych administratorom
+      jednostek podrzędnych).
+
+      | Type | Value |
+
+      | --- | --- |
+
+      | Nip | 10 cyfrowy numer NIP |
+
+      | InternalId | Dwuczłonowy identyfikator składający się z numeru NIP i 5 cyfr:
+      `{nip}-{5_cyfr}` |'
+    nullable: true
+  targetIdentifier:
+    required:
+    - type
+    allOf:
+    - $ref: person_permissions_target_identifier.yaml
+    description: 'Identyfikator podmiotu docelowego (dla uprawnień pośrednich).
+
+      | Type | Value |
+
+      | --- | --- |
+
+      | Nip | 10 cyfrowy numer NIP |
+
+      | AllPartners | Identyfikator oznaczający, że uprawnienie nadane w sposób pośredni
+      jest typu generalnego |'
+    nullable: true
+  authorIdentifier:
+    required:
+    - type
+    allOf:
+    - $ref: person_permissions_author_identifier.yaml
+    description: 'Identyfikator osoby lub podmiotu nadającego uprawnienie.
+
+      | Type | Value |
+
+      | --- | --- |
+
+      | Nip | 10 cyfrowy numer NIP |
+
+      | Pesel | 11 cyfrowy numer PESEL |
+
+      | Fingerprint | Odcisk palca certyfikatu |
+
+      | System | Identyfikator systemowy KSeF |'
+  permissionScope:
+    allOf:
+    - $ref: person_permission_scope.yaml
+    description: Uprawnienie.
+  description:
+    type: string
+    description: Opis uprawnienia.
+  permissionState:
+    allOf:
+    - $ref: permission_state.yaml
+    description: Stan uprawnienia.
+  startDate:
+    type: string
+    description: Data rozpoczęcia obowiązywania uprawnienia.
+    format: date-time
+  canDelegate:
+    type: boolean
+    description: Informacja o możliwości dalszego nadawania uprawnienia w sposób pośredni.
+additionalProperties: false

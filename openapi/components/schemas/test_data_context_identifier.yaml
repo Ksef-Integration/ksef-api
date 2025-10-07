@@ -1,0 +1,9 @@
+type: object
+properties:
+  type:
+    allOf:
+    - $ref: test_data_context_identifier_type.yaml
+  value:
+    type: string
+    nullable: true
+additionalProperties: false

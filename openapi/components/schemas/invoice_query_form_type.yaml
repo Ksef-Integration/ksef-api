@@ -1,0 +1,16 @@
+enum:
+- FA
+- PEF
+- RR
+type: string
+description: '| Wartość | Opis |
+
+  | --- | --- |
+
+  | FA | Faktura VAT |
+
+  | PEF | Faktura PEF |
+
+  | RR | Faktura RR |
+
+  '

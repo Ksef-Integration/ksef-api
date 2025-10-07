@@ -1,0 +1,675 @@
+openapi: 3.0.4
+info:
+  title: KSeF API TE
+  description: '**Wersja API:** 2.0.0 (build 2.0.0-rc5.1-te-20251003.1+250a8a745ee10a8cadf31d3166cc18845dec58b3)<br>
+
+    **Klucze publiczne** Ministerstwa Finansów (dla danego środowiska): [Pobierz klucze](#tag/Certyfikaty-klucza-publicznego)<br>
+
+    **Historia zmian:** [Changelog](https://github.com/CIRFMF/ksef-docs/blob/main/api-changelog.md)<br>
+
+    **Rozszerzona dokumentacja API:** [ksef-docs](https://github.com/CIRFMF/ksef-docs/tree/main)
+
+    '
+  version: v2
+paths:
+  /api/v2/auth/sessions:
+    $ref: ./paths/auth/sessions.yaml
+  /api/v2/auth/sessions/current:
+    $ref: ./paths/auth/sessions_current.yaml
+  /api/v2/auth/sessions/{referenceNumber}:
+    $ref: ./paths/auth/sessions_by_referenceNumber.yaml
+  /api/v2/certificates/limits:
+    $ref: ./paths/certificates/limits.yaml
+  /api/v2/certificates/enrollments/data:
+    $ref: ./paths/certificates/enrollments_data.yaml
+  /api/v2/certificates/enrollments:
+    $ref: ./paths/certificates/enrollments.yaml
+  /api/v2/certificates/enrollments/{referenceNumber}:
+    $ref: ./paths/certificates/enrollments_by_referenceNumber.yaml
+  /api/v2/certificates/retrieve:
+    $ref: ./paths/certificates/retrieve.yaml
+  /api/v2/certificates/{certificateSerialNumber}/revoke:
+    $ref: ./paths/certificates/by_certificateSerialNumber_revoke.yaml
+  /api/v2/certificates/query:
+    $ref: ./paths/certificates/query.yaml
+  /api/v2/security/public-key-certificates:
+    $ref: ./paths/security/public-key-certificates.yaml
+  /api/v2/testdata/subject:
+    $ref: ./paths/testdata/subject.yaml
+  /api/v2/testdata/subject/remove:
+    $ref: ./paths/testdata/subject_remove.yaml
+  /api/v2/testdata/person:
+    $ref: ./paths/testdata/person.yaml
+  /api/v2/testdata/person/remove:
+    $ref: ./paths/testdata/person_remove.yaml
+  /api/v2/testdata/permissions:
+    $ref: ./paths/testdata/permissions.yaml
+  /api/v2/testdata/permissions/revoke:
+    $ref: ./paths/testdata/permissions_revoke.yaml
+  /api/v2/testdata/attachment:
+    $ref: ./paths/testdata/attachment.yaml
+  /api/v2/testdata/attachment/revoke:
+    $ref: ./paths/testdata/attachment_revoke.yaml
+  /api/v2/permissions/persons/grants:
+    $ref: ./paths/permissions/persons_grants.yaml
+  /api/v2/permissions/entities/grants:
+    $ref: ./paths/permissions/entities_grants.yaml
+  /api/v2/permissions/authorizations/grants:
+    $ref: ./paths/permissions/authorizations_grants.yaml
+  /api/v2/permissions/indirect/grants:
+    $ref: ./paths/permissions/indirect_grants.yaml
+  /api/v2/permissions/subunits/grants:
+    $ref: ./paths/permissions/subunits_grants.yaml
+  /api/v2/permissions/eu-entities/administration/grants:
+    $ref: ./paths/permissions/eu-entities_administration_grants.yaml
+  /api/v2/permissions/eu-entities/grants:
+    $ref: ./paths/permissions/eu-entities_grants.yaml
+  /api/v2/permissions/common/grants/{permissionId}:
+    $ref: ./paths/permissions/common_grants_by_permissionId.yaml
+  /api/v2/permissions/authorizations/grants/{permissionId}:
+    $ref: ./paths/permissions/authorizations_grants_by_permissionId.yaml
+  /api/v2/permissions/operations/{operationReferenceNumber}:
+    $ref: ./paths/permissions/operations_by_operationReferenceNumber.yaml
+  /api/v2/permissions/attachments/status:
+    $ref: ./paths/permissions/attachments_status.yaml
+  /api/v2/invoices/ksef/{ksefNumber}:
+    $ref: ./paths/invoices/ksef_by_ksefNumber.yaml
+  /api/v2/invoices/query/metadata:
+    $ref: ./paths/invoices/query_metadata.yaml
+  /api/v2/invoices/exports:
+    $ref: ./paths/invoices/exports.yaml
+  /api/v2/invoices/exports/{operationReferenceNumber}:
+    $ref: ./paths/invoices/exports_by_operationReferenceNumber.yaml
+  /api/v2/sessions:
+    $ref: ./paths/sessions/root.yaml
+  /api/v2/sessions/{referenceNumber}:
+    $ref: ./paths/sessions/by_referenceNumber.yaml
+  /api/v2/sessions/{referenceNumber}/invoices:
+    $ref: ./paths/sessions/by_referenceNumber_invoices.yaml
+  /api/v2/sessions/{referenceNumber}/invoices/{invoiceReferenceNumber}:
+    $ref: ./paths/sessions/by_referenceNumber_invoices_by_invoiceReferenceNumber.yaml
+  /api/v2/sessions/{referenceNumber}/invoices/failed:
+    $ref: ./paths/sessions/by_referenceNumber_invoices_failed.yaml
+  /api/v2/sessions/{referenceNumber}/invoices/ksef/{ksefNumber}/upo:
+    $ref: ./paths/sessions/by_referenceNumber_invoices_ksef_by_ksefNumber_upo.yaml
+  /api/v2/sessions/{referenceNumber}/invoices/{invoiceReferenceNumber}/upo:
+    $ref: ./paths/sessions/by_referenceNumber_invoices_by_invoiceReferenceNumber_upo.yaml
+  /api/v2/sessions/{referenceNumber}/upo/{upoReferenceNumber}:
+    $ref: ./paths/sessions/by_referenceNumber_upo_by_upoReferenceNumber.yaml
+  /api/v2/tokens:
+    $ref: ./paths/tokens/root.yaml
+  /api/v2/tokens/{referenceNumber}:
+    $ref: ./paths/tokens/by_referenceNumber.yaml
+  /api/v2/peppol/query:
+    $ref: ./paths/peppol/query.yaml
+  /api/v2/auth/challenge:
+    $ref: ./paths/auth/challenge.yaml
+  /api/v2/auth/xades-signature:
+    $ref: ./paths/auth/xades-signature.yaml
+  /api/v2/auth/ksef-token:
+    $ref: ./paths/auth/ksef-token.yaml
+  /api/v2/auth/{referenceNumber}:
+    $ref: ./paths/auth/by_referenceNumber.yaml
+  /api/v2/auth/token/redeem:
+    $ref: ./paths/auth/token_redeem.yaml
+  /api/v2/auth/token/refresh:
+    $ref: ./paths/auth/token_refresh.yaml
+  /api/v2/sessions/online:
+    $ref: ./paths/sessions/online.yaml
+  /api/v2/sessions/online/{referenceNumber}/invoices:
+    $ref: ./paths/sessions/online_by_referenceNumber_invoices.yaml
+  /api/v2/sessions/online/{referenceNumber}/close:
+    $ref: ./paths/sessions/online_by_referenceNumber_close.yaml
+  /api/v2/sessions/batch:
+    $ref: ./paths/sessions/batch.yaml
+  /api/v2/sessions/batch/{referenceNumber}/close:
+    $ref: ./paths/sessions/batch_by_referenceNumber_close.yaml
+  /api/v2/permissions/query/personal/grants:
+    $ref: ./paths/permissions/query_personal_grants.yaml
+  /api/v2/permissions/query/persons/grants:
+    $ref: ./paths/permissions/query_persons_grants.yaml
+  /api/v2/permissions/query/subunits/grants:
+    $ref: ./paths/permissions/query_subunits_grants.yaml
+  /api/v2/permissions/query/entities/roles:
+    $ref: ./paths/permissions/query_entities_roles.yaml
+  /api/v2/permissions/query/subordinate-entities/roles:
+    $ref: ./paths/permissions/query_subordinate-entities_roles.yaml
+  /api/v2/permissions/query/authorizations/grants:
+    $ref: ./paths/permissions/query_authorizations_grants.yaml
+  /api/v2/permissions/query/eu-entities/grants:
+    $ref: ./paths/permissions/query_eu-entities_grants.yaml
+components:
+  schemas:
+    AllowedIps:
+      $ref: ./components/schemas/allowed_ips.yaml
+    AmountType:
+      $ref: ./components/schemas/amount_type.yaml
+    AttachmentPermissionGrantRequest:
+      $ref: ./components/schemas/attachment_permission_grant_request.yaml
+    AttachmentPermissionRevokeRequest:
+      $ref: ./components/schemas/attachment_permission_revoke_request.yaml
+    AuthenticationChallengeResponse:
+      $ref: ./components/schemas/authentication_challenge_response.yaml
+    AuthenticationContextIdentifier:
+      $ref: ./components/schemas/authentication_context_identifier.yaml
+    AuthenticationContextIdentifierType:
+      $ref: ./components/schemas/authentication_context_identifier_type.yaml
+    AuthenticationInitResponse:
+      $ref: ./components/schemas/authentication_init_response.yaml
+    AuthenticationListItem:
+      $ref: ./components/schemas/authentication_list_item.yaml
+    AuthenticationListResponse:
+      $ref: ./components/schemas/authentication_list_response.yaml
+    AuthenticationMethod:
+      $ref: ./components/schemas/authentication_method.yaml
+    AuthenticationOperationStatusResponse:
+      $ref: ./components/schemas/authentication_operation_status_response.yaml
+    AuthenticationTokenRefreshResponse:
+      $ref: ./components/schemas/authentication_token_refresh_response.yaml
+    AuthenticationTokenStatus:
+      $ref: ./components/schemas/authentication_token_status.yaml
+    AuthenticationTokensResponse:
+      $ref: ./components/schemas/authentication_tokens_response.yaml
+    AuthorizationPolicy:
+      $ref: ./components/schemas/authorization_policy.yaml
+    BatchFileInfo:
+      $ref: ./components/schemas/batch_file_info.yaml
+    BatchFilePartInfo:
+      $ref: ./components/schemas/batch_file_part_info.yaml
+    BuyerIdentifierType:
+      $ref: ./components/schemas/buyer_identifier_type.yaml
+    CertificateEnrollmentDataResponse:
+      $ref: ./components/schemas/certificate_enrollment_data_response.yaml
+    CertificateEnrollmentStatusResponse:
+      $ref: ./components/schemas/certificate_enrollment_status_response.yaml
+    CertificateLimit:
+      $ref: ./components/schemas/certificate_limit.yaml
+    CertificateLimitsResponse:
+      $ref: ./components/schemas/certificate_limits_response.yaml
+    CertificateListItem:
+      $ref: ./components/schemas/certificate_list_item.yaml
+    CertificateListItemStatus:
+      $ref: ./components/schemas/certificate_list_item_status.yaml
+    CertificateRevocationReason:
+      $ref: ./components/schemas/certificate_revocation_reason.yaml
+    CertificateSubjectIdentifier:
+      $ref: ./components/schemas/certificate_subject_identifier.yaml
+    CertificateSubjectIdentifierType:
+      $ref: ./components/schemas/certificate_subject_identifier_type.yaml
+    CheckAttachmentPermissionStatusResponse:
+      $ref: ./components/schemas/check_attachment_permission_status_response.yaml
+    CommonSessionStatus:
+      $ref: ./components/schemas/common_session_status.yaml
+    CurrencyCode:
+      $ref: ./components/schemas/currency_code.yaml
+    EncryptionInfo:
+      $ref: ./components/schemas/encryption_info.yaml
+    EnrollCertificateRequest:
+      $ref: ./components/schemas/enroll_certificate_request.yaml
+    EnrollCertificateResponse:
+      $ref: ./components/schemas/enroll_certificate_response.yaml
+    EntityAuthorizationGrant:
+      $ref: ./components/schemas/entity_authorization_grant.yaml
+    EntityAuthorizationPermissionType:
+      $ref: ./components/schemas/entity_authorization_permission_type.yaml
+    EntityAuthorizationPermissionsGrantRequest:
+      $ref: ./components/schemas/entity_authorization_permissions_grant_request.yaml
+    EntityAuthorizationPermissionsQueryRequest:
+      $ref: ./components/schemas/entity_authorization_permissions_query_request.yaml
+    EntityAuthorizationPermissionsSubjectIdentifier:
+      $ref: ./components/schemas/entity_authorization_permissions_subject_identifier.yaml
+    EntityAuthorizationPermissionsSubjectIdentifierType:
+      $ref: ./components/schemas/entity_authorization_permissions_subject_identifier_type.yaml
+    EntityAuthorizationsAuthorIdentifier:
+      $ref: ./components/schemas/entity_authorizations_author_identifier.yaml
+    EntityAuthorizationsAuthorIdentifierType:
+      $ref: ./components/schemas/entity_authorizations_author_identifier_type.yaml
+    EntityAuthorizationsAuthorizedEntityIdentifier:
+      $ref: ./components/schemas/entity_authorizations_authorized_entity_identifier.yaml
+    EntityAuthorizationsAuthorizedEntityIdentifierType:
+      $ref: ./components/schemas/entity_authorizations_authorized_entity_identifier_type.yaml
+    EntityAuthorizationsAuthorizingEntityIdentifier:
+      $ref: ./components/schemas/entity_authorizations_authorizing_entity_identifier.yaml
+    EntityAuthorizationsAuthorizingEntityIdentifierType:
+      $ref: ./components/schemas/entity_authorizations_authorizing_entity_identifier_type.yaml
+    EntityPermission:
+      $ref: ./components/schemas/entity_permission.yaml
+    EntityPermissionType:
+      $ref: ./components/schemas/entity_permission_type.yaml
+    EntityPermissionsGrantRequest:
+      $ref: ./components/schemas/entity_permissions_grant_request.yaml
+    EntityPermissionsSubjectIdentifier:
+      $ref: ./components/schemas/entity_permissions_subject_identifier.yaml
+    EntityPermissionsSubjectIdentifierType:
+      $ref: ./components/schemas/entity_permissions_subject_identifier_type.yaml
+    EntityPermissionsSubordinateEntityIdentifier:
+      $ref: ./components/schemas/entity_permissions_subordinate_entity_identifier.yaml
+    EntityPermissionsSubordinateEntityIdentifierType:
+      $ref: ./components/schemas/entity_permissions_subordinate_entity_identifier_type.yaml
+    EntityRole:
+      $ref: ./components/schemas/entity_role.yaml
+    EntityRoleType:
+      $ref: ./components/schemas/entity_role_type.yaml
+    EntityRolesParentEntityIdentifier:
+      $ref: ./components/schemas/entity_roles_parent_entity_identifier.yaml
+    EntityRolesParentEntityIdentifierType:
+      $ref: ./components/schemas/entity_roles_parent_entity_identifier_type.yaml
+    EuEntityAdministrationPermissionsContextIdentifier:
+      $ref: ./components/schemas/eu_entity_administration_permissions_context_identifier.yaml
+    EuEntityAdministrationPermissionsContextIdentifierType:
+      $ref: ./components/schemas/eu_entity_administration_permissions_context_identifier_type.yaml
+    EuEntityAdministrationPermissionsGrantRequest:
+      $ref: ./components/schemas/eu_entity_administration_permissions_grant_request.yaml
+    EuEntityAdministrationPermissionsSubjectIdentifier:
+      $ref: ./components/schemas/eu_entity_administration_permissions_subject_identifier.yaml
+    EuEntityAdministrationPermissionsSubjectIdentifierType:
+      $ref: ./components/schemas/eu_entity_administration_permissions_subject_identifier_type.yaml
+    EuEntityPermission:
+      $ref: ./components/schemas/eu_entity_permission.yaml
+    EuEntityPermissionType:
+      $ref: ./components/schemas/eu_entity_permission_type.yaml
+    EuEntityPermissionsAuthorIdentifier:
+      $ref: ./components/schemas/eu_entity_permissions_author_identifier.yaml
+    EuEntityPermissionsAuthorIdentifierType:
+      $ref: ./components/schemas/eu_entity_permissions_author_identifier_type.yaml
+    EuEntityPermissionsGrantRequest:
+      $ref: ./components/schemas/eu_entity_permissions_grant_request.yaml
+    EuEntityPermissionsQueryPermissionType:
+      $ref: ./components/schemas/eu_entity_permissions_query_permission_type.yaml
+    EuEntityPermissionsQueryRequest:
+      $ref: ./components/schemas/eu_entity_permissions_query_request.yaml
+    EuEntityPermissionsSubjectIdentifier:
+      $ref: ./components/schemas/eu_entity_permissions_subject_identifier.yaml
+    EuEntityPermissionsSubjectIdentifierType:
+      $ref: ./components/schemas/eu_entity_permissions_subject_identifier_type.yaml
+    ExceptionDetails:
+      $ref: ./components/schemas/exception_details.yaml
+    ExceptionInfo:
+      $ref: ./components/schemas/exception_info.yaml
+    ExceptionResponse:
+      $ref: ./components/schemas/exception_response.yaml
+    ExportInvoicesResponse:
+      $ref: ./components/schemas/export_invoices_response.yaml
+    FormCode:
+      $ref: ./components/schemas/form_code.yaml
+    GenerateTokenRequest:
+      $ref: ./components/schemas/generate_token_request.yaml
+    GenerateTokenResponse:
+      $ref: ./components/schemas/generate_token_response.yaml
+    IndirectPermissionType:
+      $ref: ./components/schemas/indirect_permission_type.yaml
+    IndirectPermissionsGrantRequest:
+      $ref: ./components/schemas/indirect_permissions_grant_request.yaml
+    IndirectPermissionsSubjectIdentifier:
+      $ref: ./components/schemas/indirect_permissions_subject_identifier.yaml
+    IndirectPermissionsSubjectIdentifierType:
+      $ref: ./components/schemas/indirect_permissions_subject_identifier_type.yaml
+    IndirectPermissionsTargetIdentifier:
+      $ref: ./components/schemas/indirect_permissions_target_identifier.yaml
+    IndirectPermissionsTargetIdentifierType:
+      $ref: ./components/schemas/indirect_permissions_target_identifier_type.yaml
+    InitTokenAuthenticationRequest:
+      $ref: ./components/schemas/init_token_authentication_request.yaml
+    InvoiceExportRequest:
+      $ref: ./components/schemas/invoice_export_request.yaml
+    InvoiceExportStatusResponse:
+      $ref: ./components/schemas/invoice_export_status_response.yaml
+    InvoiceMetadata:
+      $ref: ./components/schemas/invoice_metadata.yaml
+    InvoiceMetadataAuthorizedSubject:
+      $ref: ./components/schemas/invoice_metadata_authorized_subject.yaml
+    InvoiceMetadataBuyer:
+      $ref: ./components/schemas/invoice_metadata_buyer.yaml
+    InvoiceMetadataBuyerIdentifier:
+      $ref: ./components/schemas/invoice_metadata_buyer_identifier.yaml
+    InvoiceMetadataSeller:
+      $ref: ./components/schemas/invoice_metadata_seller.yaml
+    InvoiceMetadataThirdSubject:
+      $ref: ./components/schemas/invoice_metadata_third_subject.yaml
+    InvoiceMetadataThirdSubjectIdentifier:
+      $ref: ./components/schemas/invoice_metadata_third_subject_identifier.yaml
+    InvoicePackage:
+      $ref: ./components/schemas/invoice_package.yaml
+    InvoicePackagePart:
+      $ref: ./components/schemas/invoice_package_part.yaml
+    InvoicePermissionType:
+      $ref: ./components/schemas/invoice_permission_type.yaml
+    InvoiceQueryAmount:
+      $ref: ./components/schemas/invoice_query_amount.yaml
+    InvoiceQueryBuyerIdentifier:
+      $ref: ./components/schemas/invoice_query_buyer_identifier.yaml
+    InvoiceQueryDateRange:
+      $ref: ./components/schemas/invoice_query_date_range.yaml
+    InvoiceQueryDateType:
+      $ref: ./components/schemas/invoice_query_date_type.yaml
+    InvoiceQueryFilters:
+      $ref: ./components/schemas/invoice_query_filters.yaml
+    InvoiceQueryFormType:
+      $ref: ./components/schemas/invoice_query_form_type.yaml
+    InvoiceQuerySubjectType:
+      $ref: ./components/schemas/invoice_query_subject_type.yaml
+    InvoiceType:
+      $ref: ./components/schemas/invoice_type.yaml
+    InvoicingMode:
+      $ref: ./components/schemas/invoicing_mode.yaml
+    KsefCertificateType:
+      $ref: ./components/schemas/ksef_certificate_type.yaml
+    OpenBatchSessionRequest:
+      $ref: ./components/schemas/open_batch_session_request.yaml
+    OpenBatchSessionResponse:
+      $ref: ./components/schemas/open_batch_session_response.yaml
+    OpenOnlineSessionRequest:
+      $ref: ./components/schemas/open_online_session_request.yaml
+    OpenOnlineSessionResponse:
+      $ref: ./components/schemas/open_online_session_response.yaml
+    PartUploadRequest:
+      $ref: ./components/schemas/part_upload_request.yaml
+    PeppolProvider:
+      $ref: ./components/schemas/peppol_provider.yaml
+    PermissionState:
+      $ref: ./components/schemas/permission_state.yaml
+    PermissionsOperationResponse:
+      $ref: ./components/schemas/permissions_operation_response.yaml
+    PermissionsOperationStatusResponse:
+      $ref: ./components/schemas/permissions_operation_status_response.yaml
+    PersonCreateRequest:
+      $ref: ./components/schemas/person_create_request.yaml
+    PersonPermission:
+      $ref: ./components/schemas/person_permission.yaml
+    PersonPermissionScope:
+      $ref: ./components/schemas/person_permission_scope.yaml
+    PersonPermissionType:
+      $ref: ./components/schemas/person_permission_type.yaml
+    PersonPermissionsAuthorIdentifier:
+      $ref: ./components/schemas/person_permissions_author_identifier.yaml
+    PersonPermissionsAuthorIdentifierType:
+      $ref: ./components/schemas/person_permissions_author_identifier_type.yaml
+    PersonPermissionsAuthorizedIdentifier:
+      $ref: ./components/schemas/person_permissions_authorized_identifier.yaml
+    PersonPermissionsAuthorizedIdentifierType:
+      $ref: ./components/schemas/person_permissions_authorized_identifier_type.yaml
+    PersonPermissionsContextIdentifier:
+      $ref: ./components/schemas/person_permissions_context_identifier.yaml
+    PersonPermissionsContextIdentifierType:
+      $ref: ./components/schemas/person_permissions_context_identifier_type.yaml
+    PersonPermissionsGrantRequest:
+      $ref: ./components/schemas/person_permissions_grant_request.yaml
+    PersonPermissionsQueryRequest:
+      $ref: ./components/schemas/person_permissions_query_request.yaml
+    PersonPermissionsQueryType:
+      $ref: ./components/schemas/person_permissions_query_type.yaml
+    PersonPermissionsSubjectIdentifier:
+      $ref: ./components/schemas/person_permissions_subject_identifier.yaml
+    PersonPermissionsSubjectIdentifierType:
+      $ref: ./components/schemas/person_permissions_subject_identifier_type.yaml
+    PersonPermissionsTargetIdentifier:
+      $ref: ./components/schemas/person_permissions_target_identifier.yaml
+    PersonPermissionsTargetIdentifierType:
+      $ref: ./components/schemas/person_permissions_target_identifier_type.yaml
+    PersonRemoveRequest:
+      $ref: ./components/schemas/person_remove_request.yaml
+    PersonalPermission:
+      $ref: ./components/schemas/personal_permission.yaml
+    PersonalPermissionScope:
+      $ref: ./components/schemas/personal_permission_scope.yaml
+    PersonalPermissionType:
+      $ref: ./components/schemas/personal_permission_type.yaml
+    PersonalPermissionsAuthorizedIdentifier:
+      $ref: ./components/schemas/personal_permissions_authorized_identifier.yaml
+    PersonalPermissionsAuthorizedIdentifierType:
+      $ref: ./components/schemas/personal_permissions_authorized_identifier_type.yaml
+    PersonalPermissionsContextIdentifier:
+      $ref: ./components/schemas/personal_permissions_context_identifier.yaml
+    PersonalPermissionsContextIdentifierType:
+      $ref: ./components/schemas/personal_permissions_context_identifier_type.yaml
+    PersonalPermissionsQueryRequest:
+      $ref: ./components/schemas/personal_permissions_query_request.yaml
+    PersonalPermissionsTargetIdentifier:
+      $ref: ./components/schemas/personal_permissions_target_identifier.yaml
+    PersonalPermissionsTargetIdentifierType:
+      $ref: ./components/schemas/personal_permissions_target_identifier_type.yaml
+    PublicKeyCertificate:
+      $ref: ./components/schemas/public_key_certificate.yaml
+    PublicKeyCertificateUsage:
+      $ref: ./components/schemas/public_key_certificate_usage.yaml
+    QueryCertificatesRequest:
+      $ref: ./components/schemas/query_certificates_request.yaml
+    QueryCertificatesResponse:
+      $ref: ./components/schemas/query_certificates_response.yaml
+    QueryEntityAuthorizationPermissionsResponse:
+      $ref: ./components/schemas/query_entity_authorization_permissions_response.yaml
+    QueryEntityRolesResponse:
+      $ref: ./components/schemas/query_entity_roles_response.yaml
+    QueryEuEntityPermissionsResponse:
+      $ref: ./components/schemas/query_eu_entity_permissions_response.yaml
+    QueryInvoicesMetadataResponse:
+      $ref: ./components/schemas/query_invoices_metadata_response.yaml
+    QueryPeppolProvidersResponse:
+      $ref: ./components/schemas/query_peppol_providers_response.yaml
+    QueryPersonPermissionsResponse:
+      $ref: ./components/schemas/query_person_permissions_response.yaml
+    QueryPersonalPermissionsResponse:
+      $ref: ./components/schemas/query_personal_permissions_response.yaml
+    QuerySubordinateEntityRolesResponse:
+      $ref: ./components/schemas/query_subordinate_entity_roles_response.yaml
+    QuerySubunitPermissionsResponse:
+      $ref: ./components/schemas/query_subunit_permissions_response.yaml
+    QueryTokensResponse:
+      $ref: ./components/schemas/query_tokens_response.yaml
+    QueryTokensResponseItem:
+      $ref: ./components/schemas/query_tokens_response_item.yaml
+    QueryType:
+      $ref: ./components/schemas/query_type.yaml
+    RetrieveCertificatesListItem:
+      $ref: ./components/schemas/retrieve_certificates_list_item.yaml
+    RetrieveCertificatesRequest:
+      $ref: ./components/schemas/retrieve_certificates_request.yaml
+    RetrieveCertificatesResponse:
+      $ref: ./components/schemas/retrieve_certificates_response.yaml
+    RevokeCertificateRequest:
+      $ref: ./components/schemas/revoke_certificate_request.yaml
+    SendInvoiceRequest:
+      $ref: ./components/schemas/send_invoice_request.yaml
+    SendInvoiceResponse:
+      $ref: ./components/schemas/send_invoice_response.yaml
+    SessionInvoiceStatusResponse:
+      $ref: ./components/schemas/session_invoice_status_response.yaml
+    SessionInvoicesResponse:
+      $ref: ./components/schemas/session_invoices_response.yaml
+    SessionStatusResponse:
+      $ref: ./components/schemas/session_status_response.yaml
+    SessionType:
+      $ref: ./components/schemas/session_type.yaml
+    SessionsQueryResponse:
+      $ref: ./components/schemas/sessions_query_response.yaml
+    SessionsQueryResponseItem:
+      $ref: ./components/schemas/sessions_query_response_item.yaml
+    StatusInfo:
+      $ref: ./components/schemas/status_info.yaml
+    SubjectCreateRequest:
+      $ref: ./components/schemas/subject_create_request.yaml
+    SubjectRemoveRequest:
+      $ref: ./components/schemas/subject_remove_request.yaml
+    SubjectType:
+      $ref: ./components/schemas/subject_type.yaml
+    SubordinateEntityRole:
+      $ref: ./components/schemas/subordinate_entity_role.yaml
+    SubordinateEntityRoleType:
+      $ref: ./components/schemas/subordinate_entity_role_type.yaml
+    SubordinateEntityRolesQueryRequest:
+      $ref: ./components/schemas/subordinate_entity_roles_query_request.yaml
+    SubordinateRoleSubordinateEntityIdentifier:
+      $ref: ./components/schemas/subordinate_role_subordinate_entity_identifier.yaml
+    SubordinateRoleSubordinateEntityIdentifierType:
+      $ref: ./components/schemas/subordinate_role_subordinate_entity_identifier_type.yaml
+    Subunit:
+      $ref: ./components/schemas/subunit.yaml
+    SubunitPermission:
+      $ref: ./components/schemas/subunit_permission.yaml
+    SubunitPermissionScope:
+      $ref: ./components/schemas/subunit_permission_scope.yaml
+    SubunitPermissionsAuthorIdentifier:
+      $ref: ./components/schemas/subunit_permissions_author_identifier.yaml
+    SubunitPermissionsAuthorIdentifierType:
+      $ref: ./components/schemas/subunit_permissions_author_identifier_type.yaml
+    SubunitPermissionsAuthorizedIdentifier:
+      $ref: ./components/schemas/subunit_permissions_authorized_identifier.yaml
+    SubunitPermissionsContextIdentifier:
+      $ref: ./components/schemas/subunit_permissions_context_identifier.yaml
+    SubunitPermissionsContextIdentifierType:
+      $ref: ./components/schemas/subunit_permissions_context_identifier_type.yaml
+    SubunitPermissionsGrantRequest:
+      $ref: ./components/schemas/subunit_permissions_grant_request.yaml
+    SubunitPermissionsQueryRequest:
+      $ref: ./components/schemas/subunit_permissions_query_request.yaml
+    SubunitPermissionsSubjectIdentifier:
+      $ref: ./components/schemas/subunit_permissions_subject_identifier.yaml
+    SubunitPermissionsSubjectIdentifierType:
+      $ref: ./components/schemas/subunit_permissions_subject_identifier_type.yaml
+    SubunitPermissionsSubunitIdentifier:
+      $ref: ./components/schemas/subunit_permissions_subunit_identifier.yaml
+    SubunitPermissionsSubunitIdentifierType:
+      $ref: ./components/schemas/subunit_permissions_subunit_identifier_type.yaml
+    TestDataAuthorizedIdentifier:
+      $ref: ./components/schemas/test_data_authorized_identifier.yaml
+    TestDataAuthorizedIdentifierType:
+      $ref: ./components/schemas/test_data_authorized_identifier_type.yaml
+    TestDataContextIdentifier:
+      $ref: ./components/schemas/test_data_context_identifier.yaml
+    TestDataContextIdentifierType:
+      $ref: ./components/schemas/test_data_context_identifier_type.yaml
+    TestDataPermission:
+      $ref: ./components/schemas/test_data_permission.yaml
+    TestDataPermissionType:
+      $ref: ./components/schemas/test_data_permission_type.yaml
+    TestDataPermissionsGrantRequest:
+      $ref: ./components/schemas/test_data_permissions_grant_request.yaml
+    TestDataPermissionsRevokeRequest:
+      $ref: ./components/schemas/test_data_permissions_revoke_request.yaml
+    ThirdSubjectIdentifierType:
+      $ref: ./components/schemas/third_subject_identifier_type.yaml
+    TokenAuthorIdentifierType:
+      $ref: ./components/schemas/token_author_identifier_type.yaml
+    TokenAuthorIdentifierTypeIdentifier:
+      $ref: ./components/schemas/token_author_identifier_type_identifier.yaml
+    TokenContextIdentifierType:
+      $ref: ./components/schemas/token_context_identifier_type.yaml
+    TokenContextIdentifierTypeIdentifier:
+      $ref: ./components/schemas/token_context_identifier_type_identifier.yaml
+    TokenInfo:
+      $ref: ./components/schemas/token_info.yaml
+    TokenPermissionType:
+      $ref: ./components/schemas/token_permission_type.yaml
+    TokenStatusResponse:
+      $ref: ./components/schemas/token_status_response.yaml
+    UpoPageResponse:
+      $ref: ./components/schemas/upo_page_response.yaml
+    UpoResponse:
+      $ref: ./components/schemas/upo_response.yaml
+  securitySchemes:
+    Bearer:
+      type: http
+      description: Token dostępu uzyskany w wyniku operacji uwierzytelnienia.
+      scheme: Bearer
+      bearerFormat: JWT
+    SessionToken:
+      type: apiKey
+      name: SessionToken
+      in: header
+tags:
+- name: Uzyskiwanie dostępu
+  description: 'Uwierzytelnianie w systemie KSeF API 2.0 jest obowiązkowym etapem,
+    który należy wykonać przed dostępem do chronionych zasobów systemu. Proces ten
+    oparty jest na **uzyskaniu tokenu dostępu** (```accessToken```) w formacie ```JWT```,
+    który następnie wykorzystywany jest do autoryzacji operacji API.
+
+
+    > Więcej informacji:
+
+    > - [Uwierzytelnianie](https://github.com/CIRFMF/ksef-docs/blob/main/uwierzytelnianie.md)'
+- name: Aktywne sesje
+- name: Certyfikaty klucza publicznego
+- name: Wysyłka interaktywna
+- name: Wysyłka wsadowa
+  description: ''
+- name: Status wysyłki i UPO
+- name: Pobieranie faktur
+- name: Nadawanie uprawnień
+- name: Odbieranie uprawnień
+- name: Wyszukiwanie nadanych uprawnień
+- name: Operacje
+- name: Certyfikaty
+  description: "Certyfikat KSeF to cyfrowe poświadczenie tożsamości podmiotu, wydawane\
+    \ przez system KSeF na wniosek uwierzytelnionego podmiotu. \nCertyfikat ten może\
+    \ być wykorzystywany do:\n\n- uwierzytelniania się w systemie KSeF,\n- realizacji\
+    \ operacji w trybie offline, w tym wystawiania faktur bezpośrednio w aplikacji\
+    \ użytkownika.\n\n**Uwaga**: Wnioskowanie o certyfikat KSeF jest możliwe wyłącznie\
+    \ po uwierzytelnieniu z wykorzystaniem podpisu (XAdES). Uwierzytelnienie przy\
+    \ użyciu tokenu systemowego KSeF nie pozwala na złożenie wniosku."
+- name: Tokeny KSeF
+  description: 'Token KSeF to unikalny, generowany identyfikator uwierzytelniający,
+    który — na równi z [kwalifikowanym podpisem elektronicznym](https://github.com/CIRFMF/ksef-docs/blob/main/uwierzytelnianie.md#21-uwierzytelnianie-kwalifikowanym-podpisem-elektronicznym)
+    — umożliwia [uwierzytelnienie](https://github.com/CIRFMF/ksef-docs/blob/main/uwierzytelnianie.md#22-uwierzytelnianie-tokenem-ksef)
+    się do API KSeF.
+
+
+    Token KSeF jest wydawany z niezmiennym zestawem uprawnień określonych przy jego
+    tworzeniu; każda modyfikacja tych uprawnień wymaga wygenerowania nowego tokena.
+
+    > **Uwaga!** <br>
+
+    > Token KSeF pełni rolę **poufnego sekretu** uwierzytelniającego — należy przechowywać
+    go wyłącznie w zaufanym i bezpiecznym magazynie.
+
+
+    Więcej informacji:
+
+    - [Token KSeF](https://github.com/CIRFMF/ksef-docs/blob/main/tokeny-ksef.md)
+
+    '
+- name: Usługi Peppol
+  description: ''
+- name: Dane testowe
+  description: 'API służy do tworzenia i zarządzania danymi testowymi, takimi jak
+    podmioty, osoby fizyczne oraz uprawnienia. Możliwe do utworzenia podmioty to:
+    organ egzekucyjny, grupa VAT oraz jednostki samorządu terytorialnego. W przypadku
+    osób fizycznych można określić, czy dana osoba jest komornikiem. Funkcjonalność
+    nadawania i odbierania uprawnień ma na celu odwzorowanie działania formularza
+    ZAW-FA w środowisku testowym.
+
+
+    Więcej informacji:
+
+    - [Scenariusze testowe](https://github.com/CIRFMF/ksef-docs/blob/main/dane-testowe-scenariusze.md)'
+x-tagGroups:
+- name: Uwierzytelnianie
+  tags:
+  - Uzyskiwanie dostępu
+  - Aktywne sesje
+- name: Szyfrowanie danych
+  tags:
+  - Certyfikaty klucza publicznego
+- name: Faktury
+  tags:
+  - Wysyłka interaktywna
+  - Wysyłka wsadowa
+  - Status wysyłki i UPO
+  - Pobieranie faktur
+- name: Uprawnienia
+  tags:
+  - Nadawanie uprawnień
+  - Odbieranie uprawnień
+  - Wyszukiwanie nadanych uprawnień
+  - Operacje
+- name: Certyfikaty
+  tags:
+  - Certyfikaty
+- name: Tokeny KSeF
+  tags:
+  - Tokeny KSeF
+- name: Usługi Peppol
+  tags:
+  - Usługi Peppol
+- name: Dane testowe
+  tags:
+  - Dane testowe

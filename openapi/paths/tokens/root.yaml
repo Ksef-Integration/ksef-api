@@ -1,0 +1,148 @@
+post:
+  tags:
+  - KSeFTokens
+  summary: Wygenerowanie nowego tokena
+  description: 'Zwraca token, który może być użyty do uwierzytelniania się w KSeF.
+
+
+    Token może być generowany tylko w kontekście NIP lub identyfikatora wewnętrznego.
+    Jest zwracany tylko raz. Zaczyna być aktywny w momencie gdy jego status zmieni
+    się na `Active`.'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          allOf:
+          - $ref: ../../components/schemas/generate_token_request.yaml
+  responses:
+    '202':
+      description: Accepted
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/generate_token_response.yaml
+    '400':
+      description: '| ExceptionCode       | ExceptionDescription                                       |
+        Details |
+
+        |---------------------|------------------------------------------------------------|---------|
+
+        | 26001               | Nie można nadać tokenowi uprawnień których nie posiadasz.  |
+        Informacja o brakujących uprawnieniach. |
+
+        | 26002               | Nie można wygenerować tokena dla obecnego typu kontekstu.  |
+        Informacja o aktualnym i dozwolonych typach kontekstu. |
+
+        | 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora}
+        |'
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/exception_response.yaml
+      x-summary: Bad Request
+    '401':
+      description: Unauthorized
+  security:
+  - Bearer: []
+get:
+  tags:
+  - KSeFTokens
+  summary: Pobranie listy wygenerowanych tokenów
+  parameters:
+  - name: status
+    in: query
+    description: 'Status tokenów do zwrócenia. W przypadku braku parametru zwracane
+      są wszystkie tokeny. Parametr można przekazać wielokrotnie.
+
+      | Wartość | Opis |
+
+      | --- | --- |
+
+      | Pending | Token został utworzony ale jest jeszcze w trakcie aktywacji i nadawania
+      uprawnień. Nie może być jeszcze wykorzystywany do uwierzytelniania. |
+
+      | Active | Token jest aktywny i może być wykorzystywany do uwierzytelniania.
+      |
+
+      | Revoking | Token jest w trakcie unieważniania. Nie może już być wykorzystywany
+      do uwierzytelniania. |
+
+      | Revoked | Token został unieważniony i nie może być wykorzystywany do uwierzytelniania.
+      |
+
+      | Failed | Nie udało się aktywować tokena. Należy wygenerować nowy token, obecny
+      nie może być wykorzystywany do uwierzytelniania. |
+
+      '
+    schema:
+      type: array
+      items:
+        $ref: ../../components/schemas/authentication_token_status.yaml
+  - name: description
+    in: query
+    description: Umożliwia filtrowanie tokenów po opisie. Wartość parametru jest wyszukiwana
+      w opisie tokena (operacja nie rozróżnia wielkości liter). Należy podać co najmniej
+      3 znaki.
+    schema:
+      type: string
+  - name: authorIdentifier
+    in: query
+    description: Umożliwia filtrowanie tokenów po ich twórcy. Wartość parametru jest
+      wyszukiwana w identyfikatorze (operacja nie rozróżnia wielkości liter). Należy
+      podać co najmniej 3 znaki.
+    schema:
+      type: string
+  - name: authorIdentifierType
+    in: query
+    description: 'Umożliwia filtrowanie tokenów po ich twórcy. Wartość parametru określa
+      typ identyfikatora w którym będzie wyszukiwany ciąg znaków przekazany w parametrze
+      `authorIdentifier`.
+
+      | Wartość | Opis |
+
+      | --- | --- |
+
+      | Nip | NIP. |
+
+      | Pesel | PESEL. |
+
+      | Fingerprint | Odcisk palca certyfikatu. |
+
+      '
+    schema:
+      allOf:
+      - $ref: ../../components/schemas/token_author_identifier_type.yaml
+  - name: pageSize
+    in: query
+    description: Rozmiar strony wyników.
+    schema:
+      type: integer
+      format: int32
+  - name: x-continuation-token
+    in: header
+    description: Token służący do pobrania kolejnej strony wyników.
+    schema:
+      type: string
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/query_tokens_response.yaml
+    '400':
+      description: "| ExceptionCode       | ExceptionDescription                 \
+        \               | Details                                                \
+        \     | \n|---------------------|-----------------------------------------------------|-------------------------------------------------------------|\n\
+        | 21418               | Przekazany token kontynuacji ma nieprawidłowy format.\
+        \ |   |\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora}\
+        \ |"
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/exception_response.yaml
+      x-summary: Bad Request
+    '401':
+      description: Unauthorized
+  security:
+  - Bearer: []

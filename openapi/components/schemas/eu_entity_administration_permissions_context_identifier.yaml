@@ -1,0 +1,21 @@
+required:
+- type
+- value
+type: object
+properties:
+  type:
+    allOf:
+    - $ref: eu_entity_administration_permissions_context_identifier_type.yaml
+    description: Typ identyfikatora.
+  value:
+    type: string
+    description: Wartość identyfikatora.
+additionalProperties: false
+description: 'Identyfikator zlożony z podmiotu polskiego i podmiotu unijnego.
+
+  | Type | Value |
+
+  | --- | --- |
+
+  | NipVatUe | Dwuczłonowy identyfikator składający się z numeru NIP i numeru VAT-UE:
+  `{nip}-{vat_ue}` |'

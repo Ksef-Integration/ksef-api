@@ -1,0 +1,6 @@
+enum:
+- Nip
+- Pesel
+- Fingerprint
+- System
+type: string

@@ -1,0 +1,33 @@
+delete:
+  tags:
+  - ActiveSessions
+  summary: Unieważnienie aktualnej sesji uwierzytelnienia
+  description: 'Unieważnia sesję powiązaną z tokenem użytym do wywołania tej operacji.
+
+
+    Unieważnienie sesji sprawia, że powiązany z nią refresh token przestaje działać
+    i nie można już za jego pomocą uzyskać kolejnych access tokenów.
+
+    **Aktywne access tokeny działają do czasu minięcia ich termin ważności.**
+
+
+    Sposób uwierzytelnienia: `RefreshToken` lub `AccessToken`.'
+  responses:
+    '204':
+      description: No Content
+    '400':
+      description: '| ExceptionCode | ExceptionDescription | Details |
+
+        |-|-|-|
+
+        | 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora}
+        |'
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/exception_response.yaml
+      x-summary: Bad Request
+    '401':
+      description: Unauthorized
+  security:
+  - Bearer: []

@@ -1,0 +1,32 @@
+required:
+- description
+- role
+- startDate
+- subordinateEntityIdentifier
+type: object
+properties:
+  subordinateEntityIdentifier:
+    required:
+    - type
+    - value
+    allOf:
+    - $ref: subordinate_role_subordinate_entity_identifier.yaml
+    description: 'Identyfikator podmiotu podrzędnego.
+
+      | Type | Value |
+
+      | --- | --- |
+
+      | Nip | 10 cyfrowy numer NIP |'
+  role:
+    allOf:
+    - $ref: subordinate_entity_role_type.yaml
+    description: Powiązanie.
+  description:
+    type: string
+    description: Opis.
+  startDate:
+    type: string
+    description: Data rozpoczęcia obowiązywania powiązania.
+    format: date-time
+additionalProperties: false

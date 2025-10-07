@@ -1,0 +1,53 @@
+required:
+- status
+type: object
+properties:
+  status:
+    allOf:
+    - $ref: status_info.yaml
+    description: "Informacje o aktualnym statusie.\n            \nSesja wsadowa:\n\
+      | Code | Description | Details |\n| --- | --- | --- |\n| 100 | Sesja wsadowa\
+      \ rozpoczęta | - |\n| 150 | Trwa przetwarzanie | - |\n| 200 | Sesja wsadowa\
+      \ przetworzona pomyślnie | - |\n| 405 | Błąd weryfikacji poprawności dostarczonych\
+      \ elementów paczki | - |\n| 415 | Błąd odszyfrowania dostarczonego klucza |\
+      \ - |\n| 420 | Przekroczony limit faktur w sesji | - |\n| 430 | Błąd dekompresji\
+      \ pierwotnego archiwum | - |\n| 435 | Błąd odszyfrowania zaszyfrowanych części\
+      \ archiwum | - |\n| 440 | Sesja anulowana, przekroczono czas wysyłki | - |\n\
+      | 445 | Błąd weryfikacji, brak poprawnych faktur | - |\n| 500 | Nieznany błąd\
+      \ ({statusCode}) | - |\n\nSesja interaktywna:\n| Code | Description | Details\
+      \ |\n| --- | --- | --- |\n| 100 | Sesja interaktywna otwarta | - |\n| 170 |\
+      \ Sesja interaktywna zamknięta | - |\n| 200 | Sesja interaktywna przetworzona\
+      \ pomyślnie | - |\n| 415 | Błąd odszyfrowania dostarczonego klucza | - |\n|\
+      \ 440 | Sesja anulowana, nie przesłano faktur | - |\n| 445 | Błąd weryfikacji,\
+      \ brak poprawnych faktur | - |\n| * | description missing | - |"
+  validUntil:
+    type: string
+    description: Termin ważności sesji. Po jego upływie sesja zostanie automatycznie
+      zamknięta.
+    format: date-time
+    nullable: true
+    readOnly: true
+  upo:
+    required:
+    - pages
+    allOf:
+    - $ref: upo_response.yaml
+    description: Informacja o UPO sesyjnym, zwracana gdy sesja została zamknięta i
+      UPO zostało wygenerowane.
+    nullable: true
+  invoiceCount:
+    type: integer
+    description: Liczba przyjętych faktur w ramach sesji.
+    format: int32
+    nullable: true
+  successfulInvoiceCount:
+    type: integer
+    description: Liczba faktur przeprocesowanych w ramach sesji z sukcesem .
+    format: int32
+    nullable: true
+  failedInvoiceCount:
+    type: integer
+    description: Liczba faktur przeprocesowanych w ramach sesji z błędem.
+    format: int32
+    nullable: true
+additionalProperties: false

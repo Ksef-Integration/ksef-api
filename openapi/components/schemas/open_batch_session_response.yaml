@@ -1,0 +1,15 @@
+required:
+- partUploadRequests
+- referenceNumber
+type: object
+properties:
+  referenceNumber:
+    type: string
+    description: Numer referencyjny sesji.
+  partUploadRequests:
+    type: array
+    items:
+      $ref: part_upload_request.yaml
+    description: Dane wymagane do poprawnego przesłania poszczególnych części pliku
+      paczki faktur.
+additionalProperties: false

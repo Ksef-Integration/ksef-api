@@ -1,0 +1,20 @@
+enum:
+- Nip
+- InternalId
+- NipVatUe
+- PeppolId
+type: string
+description: '| Wartość | Opis |
+
+  | --- | --- |
+
+  | Nip | NIP. |
+
+  | InternalId | Identyfikator wewnętrzny. |
+
+  | NipVatUe | Dwuczłonowy identyfikator składający się z numeru NIP i numeru VAT-UE:
+  `{nip}-{vat_ue}`. |
+
+  | PeppolId | Identyfikator dostawcy usług Peppol. |
+
+  '

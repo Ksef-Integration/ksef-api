@@ -1,0 +1,84 @@
+get:
+  tags:
+  - InvoiceStatus
+  summary: Pobranie faktur sesji
+  description: 'Zwraca listę faktur przesłanych w sesji wraz z ich statusami, oraz
+    informacje na temat ilości poprawnie i niepoprawnie przetworzonych faktur.
+
+
+    Wymagane uprawnienia: `InvoiceWrite`, `Introspection`, `PefInvoiceWrite`.'
+  parameters:
+  - name: x-continuation-token
+    in: header
+    description: Token służący do pobrania kolejnej strony wyników.
+    schema:
+      type: string
+  - name: referenceNumber
+    in: path
+    description: Numer referencyjny sesji.
+    required: true
+    schema:
+      type: string
+  - name: pageSize
+    in: query
+    description: Rozmiar strony wyników.
+    schema:
+      type: integer
+      format: int32
+      default: 10
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/session_invoices_response.yaml
+          example:
+            continuationToken: W34idG9rZW4iOiIrUklEOn4xUE5BQU5hcXJVOUFBQUFBQUFBQUFBPT0jUlQ6MSNUUkM6MTAjSVNWOjIjSUVPOjY1NTY3I1FDRjo4I0ZQQzpBVUFBQUFBQUFBQUFRZ0FBQUFBQUFBQT0iLCJyYW5nZSI6eyJtaW4iOiIiLCJtYXgiOiJGRiJ9fV0=
+            invoices:
+            - ordinalNumber: 1
+              invoiceNumber: FA/XPWIC-7900685789/06/2025
+              ksefNumber: 5265877635-20250626-010080DD2B5E-26
+              referenceNumber: 20250626-EE-2F15D39000-242207E5C4-1B
+              invoiceHash: mkht+3m5trnfxlTYhq3QFn74LkEO69MFNlsMAkCDSPA=
+              acquisitionDate: '2025-07-11T12:24:16.0154302+00:00'
+              invoicingDate: '2025-07-11T12:23:56.0154302+00:00'
+              permanentStorageDate: '2025-07-11T12:24:01.0154302+00:00'
+              upoDownloadUrl: https://ksef-test.mf.gov.pl/storage/01/20250918-SB-3789A40000-20373E1269-A3/invoice-upo/upo_5265877635-20250626-010080DD2B5E-26.xml?sv=2025-01-05&st=2025-09-18T14%3A49%3A20Z&se=2025-09-21T14%3A54%3A20Z&sr=b&sp=r&sig=%2BUWFPA10gS580VhngGKW%2FZiOOtiHPOiTyMlxhG6ZvWs%3D
+              status:
+                code: 200
+                description: Sukces
+            - ordinalNumber: 2
+              referenceNumber: 20250626-EE-2F20AD2000-242386DF86-52
+              invoiceHash: mkht+3m5trnfxlTYhq3QFn74LkEO69MFNlsMAkCDSPA=
+              invoicingDate: '2025-07-11T12:23:56.0154302+00:00'
+              status:
+                code: 440
+                description: Duplikat faktury
+                details:
+                - 'Duplikat faktury. Faktura o numerze KSeF: 5265877635-20250626-010080DD2B5E-26
+                  została już prawidłowo przesłana do systemu w sesji: 20250626-SO-2F14610000-242991F8C9-B4'
+    '400':
+      description: "| ExceptionCode       | ExceptionDescription                 \
+        \               | Details                                                \
+        \     | \n|---------------------|-----------------------------------------------------|-------------------------------------------------------------|\n\
+        | 21173               | Brak sesji o wskazanym numerze referencyjnym.    \
+        \   | Sesja o numerze referencyjnym {referenceNumber} nie została znaleziona.\
+        \   |\n| 21418               | Przekazany token kontynuacji ma nieprawidłowy\
+        \ format. |   |\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu\
+        \ z walidatora} |"
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/exception_response.yaml
+      x-summary: Bad Request
+    '401':
+      description: Unauthorized
+    '403':
+      description: Forbidden
+  security:
+  - Bearer: []
+  x-required-permissions:
+  - InvoiceWrite
+  - Introspection
+  - PefInvoiceWrite

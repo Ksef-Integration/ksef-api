@@ -1,0 +1,52 @@
+required:
+- authorIdentifier
+- authorizedFingerprintIdentifier
+- description
+- euEntityName
+- id
+- permissionScope
+- startDate
+- vatUeIdentifier
+type: object
+properties:
+  id:
+    type: string
+    description: Identyfikator uprawnienia.
+  authorIdentifier:
+    required:
+    - type
+    - value
+    allOf:
+    - $ref: eu_entity_permissions_author_identifier.yaml
+    description: 'Identyfikator uprawniającego.
+
+      | Type | Value |
+
+      | --- | --- |
+
+      | Nip | 10 cyfrowy numer NIP |
+
+      | Pesel | 11 cyfrowy numer PESEL |
+
+      | Fingerprint | Odcisk palca certyfikatu |'
+  vatUeIdentifier:
+    type: string
+    description: Identyfikator podmiotu unijnego.
+  euEntityName:
+    type: string
+    description: Nazwa podmiotu unijnego.
+  authorizedFingerprintIdentifier:
+    type: string
+    description: Uprawniony odcisk palca certyfikatu.
+  permissionScope:
+    allOf:
+    - $ref: eu_entity_permissions_query_permission_type.yaml
+    description: Uprawnienie.
+  description:
+    type: string
+    description: Opis uprawnienia.
+  startDate:
+    type: string
+    description: Data rozpoczęcia obowiązywania uprawnienia.
+    format: date-time
+additionalProperties: false

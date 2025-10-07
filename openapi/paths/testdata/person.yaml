@@ -1,0 +1,31 @@
+post:
+  tags:
+  - TestData
+  summary: Utworzenie osoby fizycznej
+  description: Tworzenie nowej osoby fizycznej, której system nadaje uprawnienia właścicielskie.
+    Można również określić, czy osoba ta jest komornikiem – wówczas otrzyma odpowiednie
+    uprawnienie egzekucyjne.
+  requestBody:
+    content:
+      application/json:
+        schema:
+          allOf:
+          - $ref: ../../components/schemas/person_create_request.yaml
+  responses:
+    '200':
+      description: OK
+    '400':
+      description: '| ExceptionCode       | ExceptionDescription                                       |
+        Details |
+
+        |---------------------|------------------------------------------------------------|---------|
+
+        | 30001               | Podmiot lub uprawnienie już istnieje.  |  |
+
+        | 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora}
+        |'
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/exception_response.yaml
+      x-summary: Bad Request

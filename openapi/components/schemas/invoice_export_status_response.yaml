@@ -1,0 +1,37 @@
+required:
+- status
+type: object
+properties:
+  status:
+    allOf:
+    - $ref: status_info.yaml
+    description: 'Status eksportu.
+
+
+      | Code | Description | Details |
+
+      | --- | --- | --- |
+
+      | 100 | Eksport faktur w toku | - |
+
+      | 200 | Eksport faktur zakończony sukcesem | - |
+
+      | 415 | Błąd odszyfrowania dostarczonego klucza  | - |
+
+      | 500 | Nieznany błąd ({statusCode}) | - |'
+  completedDate:
+    type: string
+    description: Data zakończenia przetwarzania żądania.
+    format: date-time
+    nullable: true
+  package:
+    required:
+    - invoiceCount
+    - size
+    - parts
+    - isTruncated
+    allOf:
+    - $ref: invoice_package.yaml
+    description: Dane paczki faktur przygotowanej do pobrania.
+    nullable: true
+additionalProperties: false

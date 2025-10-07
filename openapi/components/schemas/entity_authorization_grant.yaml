@@ -1,0 +1,70 @@
+required:
+- authorizationScope
+- authorizedEntityIdentifier
+- authorizingEntityIdentifier
+- description
+- id
+- startDate
+type: object
+properties:
+  id:
+    type: string
+    description: Identyfikator uprawnienia.
+  authorIdentifier:
+    required:
+    - type
+    - value
+    allOf:
+    - $ref: entity_authorizations_author_identifier.yaml
+    description: 'Identyfikator osoby nadającej uprawnienie.
+
+      | Type | Value |
+
+      | --- | --- |
+
+      | Nip | 10 cyfrowy numer NIP |
+
+      | Pesel | 11 cyfrowy numer PESEL |
+
+      | Fingerprint | Odcisk palca certyfikatu |'
+    nullable: true
+  authorizedEntityIdentifier:
+    required:
+    - type
+    - value
+    allOf:
+    - $ref: entity_authorizations_authorized_entity_identifier.yaml
+    description: 'Identyfikator podmiotu uprawnionego.
+
+      | Type | Value |
+
+      | --- | --- |
+
+      | Nip | 10 cyfrowy numer NIP |
+
+      | PeppolId | Identyfikator dostawcy usług Peppol |'
+  authorizingEntityIdentifier:
+    required:
+    - type
+    - value
+    allOf:
+    - $ref: entity_authorizations_authorizing_entity_identifier.yaml
+    description: 'Identyfikator podmiotu uprawniającego.
+
+      | Type | Value |
+
+      | --- | --- |
+
+      | Nip | 10 cyfrowy numer NIP |'
+  authorizationScope:
+    allOf:
+    - $ref: invoice_permission_type.yaml
+    description: Uprawnienie.
+  description:
+    type: string
+    description: Opis uprawnienia.
+  startDate:
+    type: string
+    description: Data rozpoczęcia obowiązywania uprawnienia.
+    format: date-time
+additionalProperties: false

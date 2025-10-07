@@ -1,0 +1,8 @@
+enum:
+- CourtBailiff
+- EnforcementAuthority
+- LocalGovernmentUnit
+- LocalGovernmentSubUnit
+- VatGroupUnit
+- VatGroupSubUnit
+type: string

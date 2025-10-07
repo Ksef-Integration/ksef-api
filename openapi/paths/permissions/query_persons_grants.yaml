@@ -1,0 +1,92 @@
+post:
+  tags:
+  - SearchPermissions
+  summary: Pobranie listy uprawnień do pracy w KSeF nadanych osobom fizycznym lub
+    podmiotom
+  description: 'Zwraca listę uprawnień do pracy w KSeF nadanych osobom fizycznym lub
+    podmiotom.
+
+
+    > Więcej informacji:
+
+    > - [Pobieranie listy uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#pobranie-listy-uprawnie%C5%84-do-pracy-w-ksef-nadanych-osobom-fizycznym-lub-podmiotom)
+
+
+    Wymagane uprawnienia: `CredentialsManage`, `CredentialsRead`.'
+  parameters:
+  - name: pageOffset
+    in: query
+    description: Numer strony wyników.
+    schema:
+      type: integer
+      format: int32
+  - name: pageSize
+    in: query
+    description: Rozmiar strony wyników.
+    schema:
+      type: integer
+      format: int32
+  requestBody:
+    content:
+      application/json:
+        schema:
+          required:
+          - queryType
+          allOf:
+          - $ref: ../../components/schemas/person_permissions_query_request.yaml
+        example:
+          authorIdentifier:
+            type: Nip
+            value: '7762811692'
+          permissionTypes:
+          - CredentialsManage
+          - CredentialsRead
+          - InvoiceWrite
+          permissionState: Active
+          queryType: PermissionsInCurrentContext
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/query_person_permissions_response.yaml
+          example:
+            permissions:
+            - id: 0c9a72e8-f344-457f-9c16-7c640eb60242
+              authorizedIdentifier:
+                type: Nip
+                value: '7762811692'
+              targetIdentifier:
+                type: Nip
+                value: '9786214922'
+              authorIdentifier:
+                type: Pesel
+                value: '15062788702'
+              permissionScope: InvoiceWrite
+              description: Uprawnienie nadane pośrednio
+              permissionState: Active
+              startDate: '2025-06-22T10:41:11+00:00'
+              canDelegate: false
+            hasMore: false
+    '400':
+      description: '| ExceptionCode | ExceptionDescription | Details |
+
+        |-|-|-|
+
+        | 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora}
+        |'
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/exception_response.yaml
+      x-summary: Bad Request
+    '401':
+      description: Unauthorized
+    '403':
+      description: Forbidden
+  security:
+  - Bearer: []
+  x-required-permissions:
+  - CredentialsManage
+  - CredentialsRead

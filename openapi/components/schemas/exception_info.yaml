@@ -1,0 +1,23 @@
+type: object
+properties:
+  exceptionDetailList:
+    type: array
+    items:
+      $ref: exception_details.yaml
+    nullable: true
+  referenceNumber:
+    type: string
+    nullable: true
+  serviceCode:
+    type: string
+    nullable: true
+  serviceCtx:
+    type: string
+    nullable: true
+  serviceName:
+    type: string
+    nullable: true
+  timestamp:
+    type: string
+    format: date-time
+additionalProperties: false

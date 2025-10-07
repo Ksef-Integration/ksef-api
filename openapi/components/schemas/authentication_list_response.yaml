@@ -1,0 +1,15 @@
+required:
+- items
+type: object
+properties:
+  continuationToken:
+    type: string
+    description: Token służący do pobrania kolejnej strony wyników. Jeśli jest pusty,
+      to nie ma kolejnych stron.
+    nullable: true
+  items:
+    type: array
+    items:
+      $ref: authentication_list_item.yaml
+    description: Lista sesji uwierzytelniania.
+additionalProperties: false

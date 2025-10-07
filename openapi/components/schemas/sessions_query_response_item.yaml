@@ -1,0 +1,44 @@
+required:
+- dateCreated
+- dateUpdated
+- failedInvoiceCount
+- referenceNumber
+- status
+- successfulInvoiceCount
+- totalInvoiceCount
+type: object
+properties:
+  referenceNumber:
+    type: string
+    description: Numer referencyjny sesji.
+  status:
+    allOf:
+    - $ref: status_info.yaml
+    description: Status sesji.
+  dateCreated:
+    type: string
+    description: Data utworzenia sesji.
+    format: date-time
+  dateUpdated:
+    type: string
+    description: Data ostatniej aktywności w ramach sesji.
+    format: date-time
+  validUntil:
+    type: string
+    description: Termin ważności sesji. Po jego upływie sesja interaktywna zostanie
+      automatycznie zamknięta.
+    format: date-time
+    nullable: true
+  totalInvoiceCount:
+    type: integer
+    description: Łączna liczba faktur (uwzględnia również te w trakcie przetwarzania).
+    format: int32
+  successfulInvoiceCount:
+    type: integer
+    description: Liczba poprawnie przetworzonych faktur.
+    format: int32
+  failedInvoiceCount:
+    type: integer
+    description: Liczba błędnie przetworzonych faktur.
+    format: int32
+additionalProperties: false

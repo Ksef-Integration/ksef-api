@@ -1,0 +1,27 @@
+required:
+- type
+type: object
+properties:
+  type:
+    allOf:
+    - $ref: buyer_identifier_type.yaml
+    description: 'Typ identyfikatora nabywcy.
+
+      | Wartość | Opis |
+
+      | --- | --- |
+
+      | None | Brak identyfikatora nabywcy |
+
+      | Other | Inny |
+
+      | Nip | NIP |
+
+      | VatUe | VAT UE |
+
+      '
+  value:
+    type: string
+    description: Wartośc identyfikatora nabywcy.
+    nullable: true
+additionalProperties: false

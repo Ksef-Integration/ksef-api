@@ -1,0 +1,56 @@
+get:
+  tags:
+  - InvoiceStatus
+  summary: Pobranie statusu sesji
+  description: 'Sprawdza bieżący status sesji o podanym numerze referencyjnym.
+
+
+    Wymagane uprawnienia: `InvoiceWrite`, `Introspection`, `PefInvoiceWrite`.'
+  parameters:
+  - name: referenceNumber
+    in: path
+    description: Numer referencyjny sesji.
+    required: true
+    schema:
+      type: string
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/session_status_response.yaml
+          example:
+            status:
+              code: 200
+              description: Sesja interaktywna przetworzona pomyślnie
+            upo:
+              pages:
+              - referenceNumber: 20250626-EU-2EBD6FA000-242EB9B66D-43
+                downloadUrl: https://ksef-test.mf.gov.pl/storage/01/20250918-sb-3789a40000-20373e1269-a3/session-upo/upo_00.xml?sv=2025-01-05&st=2025-09-18T14%3A55%3A50Z&se=2025-09-21T15%3A00%3A50Z&sr=b&sp=r&sig=ZlQO6Xtzu3VQQDwmEMfb0VryMxe9WcUgWtkdiB6X2Qo%3D
+            invoiceCount: 10
+            successfulInvoiceCount: 8
+            failedInvoiceCount: 2
+    '400':
+      description: "| ExceptionCode       | ExceptionDescription                 \
+        \               | Details                                                \
+        \     | \n|---------------------|-----------------------------------------------------|-------------------------------------------------------------|\n\
+        | 21173               | Brak sesji o wskazanym numerze referencyjnym.    \
+        \   | Sesja o numerze referencyjnym {referenceNumber} nie została znaleziona.\
+        \   |\n| 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora}\
+        \ |"
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/exception_response.yaml
+      x-summary: Bad Request
+    '401':
+      description: Unauthorized
+    '403':
+      description: Forbidden
+  security:
+  - Bearer: []
+  x-required-permissions:
+  - InvoiceWrite
+  - Introspection
+  - PefInvoiceWrite

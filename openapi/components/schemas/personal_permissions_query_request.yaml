@@ -1,0 +1,47 @@
+type: object
+properties:
+  contextIdentifier:
+    required:
+    - type
+    - value
+    allOf:
+    - $ref: personal_permissions_context_identifier.yaml
+    description: 'Identyfikator kontekstu uprawnienia (dla uprawnień nadanych podmiotom
+      do obsługi faktur).
+
+      | Type | Value |
+
+      | --- | --- |
+
+      | Nip | 10 cyfrowy numer NIP |'
+    nullable: true
+  targetIdentifier:
+    required:
+    - type
+    allOf:
+    - $ref: personal_permissions_target_identifier.yaml
+    description: 'Identyfikator podmiotu docelowego (dla uprawnień pośrednich).
+
+      | Type | Value |
+
+      | --- | --- |
+
+      | Nip | 10 cyfrowy numer NIP |
+
+      | AllPartners | Identyfikator oznaczający, że uprawnienie nadane w sposób pośredni
+      jest typu generalnego |'
+    nullable: true
+  permissionTypes:
+    type: array
+    items:
+      $ref: personal_permission_type.yaml
+    description: Możliwe uprawnienia do filtrowania.
+    nullable: true
+  permissionState:
+    allOf:
+    - $ref: permission_state.yaml
+    description: "Stan uprawnienia. \n| Type | Value |\n| --- | --- |\n| Active |\
+      \ Uprawnienia aktywne |\n| Inactive | Uprawnienia nieaktywne, nadane w sposób\
+      \ pośredni |"
+    nullable: true
+additionalProperties: false

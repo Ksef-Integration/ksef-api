@@ -1,0 +1,56 @@
+post:
+  tags:
+  - Authentication
+  summary: Uwierzytelnienie z wykorzystaniem tokena KSeF
+  description: 'Rozpoczyna operację uwierzytelniania z wykorzystaniem wcześniej wygenerowanego
+    tokena KSeF.
+
+
+    Token KSeF wraz z timestampem ze wcześniej wygenerowanego challenge''a (w formacie
+    ```token|timestamp```) powinien zostać zaszyfrowany dedykowanym do tego celu kluczem
+    publicznym.
+
+    - Timestamp powinien zostać przekazany jako **liczba milisekund od 1 stycznia
+    1970 roku (Unix timestamp)**.
+
+    - Algorytm szyfrowania: **RSA-OAEP (z użyciem SHA-256 jako funkcji skrótu)**.'
+  requestBody:
+    content:
+      application/json:
+        schema:
+          required:
+          - challenge
+          - contextIdentifier
+          - encryptedToken
+          allOf:
+          - $ref: ../../components/schemas/init_token_authentication_request.yaml
+        example:
+          challenge: 20250625-CR-2FDC223000-C2BFC98A9C-4E
+          contextIdentifier:
+            type: Nip
+            value: '5265877635'
+          encryptedToken: '...'
+  responses:
+    '202':
+      description: Accepted
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/authentication_init_response.yaml
+          example:
+            referenceNumber: 20250514-AU-2DFC46C000-3AC6D5877F-D4
+            authenticationToken:
+              token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbi10eXBlIjoiT3BlcmF0aW9uVG9rZW4iLCJvcGVyYXRpb24tcmVmZXJlbmNlLW51bWJlciI6IjIwMjUwNTE0LUFVLTJERkM0NkMwMDAtM0FDNkQ1ODc3Ri1ENCIsImV4cCI6MTc0NzIzMTcxOSwiaWF0IjoxNzQ3MjI5MDE5LCJpc3MiOiJrc2VmLWFwaS10aSIsImF1ZCI6ImtzZWYtYXBpLXRpIn0.rtRcV2mR9SiuJwpQaQHsbAXvvVsdNKG4DJsdiJctIeU
+              validUntil: '2025-07-11T12:23:56.0154302+00:00'
+    '400':
+      description: '| ExceptionCode | ExceptionDescription | Details |
+
+        |-|-|-|
+
+        | 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora}
+        |'
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/exception_response.yaml
+      x-summary: Bad Request

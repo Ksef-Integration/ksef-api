@@ -1,0 +1,43 @@
+required:
+- contextIdentifier
+- description
+- subjectIdentifier
+type: object
+properties:
+  subjectIdentifier:
+    required:
+    - type
+    - value
+    allOf:
+    - $ref: subunit_permissions_subject_identifier.yaml
+    description: 'Identyfikator podmiotu lub osoby fizycznej.
+
+      | Type | Value |
+
+      | --- | --- |
+
+      | Nip | 10 cyfrowy numer NIP |
+
+      | Pesel | 11 cyfrowy numer PESEL |
+
+      | Fingerprint | Odcisk palca certyfikatu |'
+  contextIdentifier:
+    required:
+    - type
+    - value
+    allOf:
+    - $ref: subunit_permissions_context_identifier.yaml
+    description: 'Identyfikator podmiotu podrzędnego.
+
+      | Type | Value |
+
+      | --- | --- |
+
+      | Nip | 10 cyfrowy numer NIP |
+
+      | InternalId | Dwuczłonowy identyfikator składający się z numeru NIP i 5 cyfr:
+      `{nip}-{5_cyfr}` |'
+  description:
+    type: string
+    description: Opis nadawanych uprawnień.
+additionalProperties: false

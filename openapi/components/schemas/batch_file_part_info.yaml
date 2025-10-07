@@ -1,0 +1,23 @@
+required:
+- fileHash
+- fileName
+- fileSize
+- ordinalNumber
+type: object
+properties:
+  ordinalNumber:
+    type: integer
+    description: Numer sekwencyjny części pliku paczki.
+    format: int32
+  fileName:
+    type: string
+    description: Nazwa części pliku paczki.
+  fileSize:
+    type: integer
+    description: Rozmiar części pliku paczki w bajtach. Maksymalna dozwolona wartość
+      to 100MiB (104 857 600 bajtów).
+    format: int64
+  fileHash:
+    type: string
+    description: Skrót SHA256 części pliku paczki, zakodowany w formacie Base64.
+additionalProperties: false

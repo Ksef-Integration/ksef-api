@@ -1,0 +1,13 @@
+required:
+- downloadUrl
+- referenceNumber
+type: object
+properties:
+  referenceNumber:
+    type: string
+    description: Numer referencyjny strony UPO.
+  downloadUrl:
+    type: string
+    description: Adres do pobrania strony UPO.
+    format: uri
+additionalProperties: false

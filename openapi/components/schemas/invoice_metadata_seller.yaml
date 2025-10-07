@@ -1,0 +1,12 @@
+required:
+- nip
+type: object
+properties:
+  nip:
+    type: string
+    description: Nip sprzedawcy.
+  name:
+    type: string
+    description: Nazwa sprzedawcy.
+    nullable: true
+additionalProperties: false

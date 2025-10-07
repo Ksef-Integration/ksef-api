@@ -1,0 +1,15 @@
+required:
+- invoices
+type: object
+properties:
+  continuationToken:
+    type: string
+    description: Token służący do pobrania kolejnej strony wyników. Jeśli jest pusty,
+      to nie ma kolejnych stron.
+    nullable: true
+  invoices:
+    type: array
+    items:
+      $ref: session_invoice_status_response.yaml
+    description: Lista pobranych faktur.
+additionalProperties: false

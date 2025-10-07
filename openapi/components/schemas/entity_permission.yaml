@@ -1,0 +1,12 @@
+required:
+- type
+type: object
+properties:
+  type:
+    allOf:
+    - $ref: entity_permission_type.yaml
+    description: Możliwe uprawnienia do nadania.
+  canDelegate:
+    type: boolean
+    description: Flaga pozwalająca na pośrednie przekazywanie danego uprawnienia
+additionalProperties: false

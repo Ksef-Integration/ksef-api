@@ -1,0 +1,11 @@
+type: object
+properties:
+  id:
+    type: string
+    description: Identyfikator dostawcy usług Peppol.
+    nullable: true
+  name:
+    type: string
+    description: Nazwa dostawcy usług Peppol.
+    nullable: true
+additionalProperties: false

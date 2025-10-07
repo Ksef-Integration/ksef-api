@@ -1,0 +1,16 @@
+required:
+- schemaVersion
+- systemCode
+- value
+type: object
+properties:
+  systemCode:
+    type: string
+    description: Kod systemowy
+  schemaVersion:
+    type: string
+    description: Wersja schematu
+  value:
+    type: string
+    description: Wartość
+additionalProperties: false

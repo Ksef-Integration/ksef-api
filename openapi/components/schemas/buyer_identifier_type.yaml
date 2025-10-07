@@ -1,0 +1,19 @@
+enum:
+- None
+- Other
+- Nip
+- VatUe
+type: string
+description: '| Wartość | Opis |
+
+  | --- | --- |
+
+  | None | Brak identyfikatora nabywcy |
+
+  | Other | Inny |
+
+  | Nip | NIP |
+
+  | VatUe | VAT UE |
+
+  '

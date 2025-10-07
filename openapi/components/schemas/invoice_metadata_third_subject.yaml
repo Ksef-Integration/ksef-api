@@ -1,0 +1,18 @@
+required:
+- identifier
+- role
+type: object
+properties:
+  identifier:
+    allOf:
+    - $ref: invoice_metadata_third_subject_identifier.yaml
+    description: Identyfikator podmiotu trzeciego.
+  name:
+    type: string
+    description: Nazwa podmiotu trzeciego.
+    nullable: true
+  role:
+    type: integer
+    description: Rola podmiotu trzeciego.
+    format: int32
+additionalProperties: false

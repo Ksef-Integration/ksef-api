@@ -1,0 +1,34 @@
+required:
+- dateType
+- from
+type: object
+properties:
+  dateType:
+    allOf:
+    - $ref: invoice_query_date_type.yaml
+    description: 'Typ daty, według której ma być zastosowany zakres.
+
+      | Wartość | Opis |
+
+      | --- | --- |
+
+      | Issue | Data wystawienia faktury. |
+
+      | Invoicing | Data przyjęcia faktury w systemie KSeF (do dalszego przetwarzania).
+      |
+
+      | PermanentStorage | Data trwałego zapisu faktury w repozytorium systemu KSeF.
+      |
+
+      '
+  from:
+    type: string
+    description: Data początkowa zakresu.
+    format: date-time
+  to:
+    type: string
+    description: Data końcowa zakresu. Jeśli nie zostanie podana, przyjmowana jest
+      bieżąca data i czas w UTC.
+    format: date-time
+    nullable: true
+additionalProperties: false

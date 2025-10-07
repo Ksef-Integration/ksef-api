@@ -1,0 +1,10 @@
+required:
+- certificateSerialNumbers
+type: object
+properties:
+  certificateSerialNumbers:
+    type: array
+    items:
+      type: string
+    description: Numery seryjne certyfikatów do pobrania.
+additionalProperties: false

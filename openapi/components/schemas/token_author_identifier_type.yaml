@@ -1,0 +1,16 @@
+enum:
+- Nip
+- Pesel
+- Fingerprint
+type: string
+description: '| Wartość | Opis |
+
+  | --- | --- |
+
+  | Nip | NIP. |
+
+  | Pesel | PESEL. |
+
+  | Fingerprint | Odcisk palca certyfikatu. |
+
+  '

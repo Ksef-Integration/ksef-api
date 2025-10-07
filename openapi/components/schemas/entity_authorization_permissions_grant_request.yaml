@@ -1,0 +1,27 @@
+required:
+- description
+- permission
+- subjectIdentifier
+type: object
+properties:
+  subjectIdentifier:
+    required:
+    - type
+    - value
+    allOf:
+    - $ref: entity_authorization_permissions_subject_identifier.yaml
+    description: 'Identyfikator podmiotu.
+
+      | Type | Value |
+
+      | --- | --- |
+
+      | Nip | 10 cyfrowy numer NIP |'
+  permission:
+    allOf:
+    - $ref: entity_authorization_permission_type.yaml
+    description: Nadawane uprawnienie o charakterze upoważnienia.
+  description:
+    type: string
+    description: Opis nadawanego uprawnienia.
+additionalProperties: false

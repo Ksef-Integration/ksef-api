@@ -1,0 +1,18 @@
+type: object
+properties:
+  nip:
+    type: string
+    nullable: true
+  pesel:
+    type: string
+    nullable: true
+  isBailiff:
+    type: boolean
+  description:
+    type: string
+    nullable: true
+  createdDate:
+    type: string
+    format: date-time
+    nullable: true
+additionalProperties: false

@@ -1,0 +1,4 @@
+enum:
+- PermissionsInCurrentContext
+- PermissionsGrantedInCurrentContext
+type: string

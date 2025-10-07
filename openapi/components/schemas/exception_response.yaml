@@ -1,0 +1,7 @@
+type: object
+properties:
+  exception:
+    allOf:
+    - $ref: exception_info.yaml
+    nullable: true
+additionalProperties: false

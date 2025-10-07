@@ -1,0 +1,81 @@
+required:
+- invoicingDate
+- ordinalNumber
+- status
+type: object
+properties:
+  ordinalNumber:
+    type: integer
+    description: Numer sekwencyjny faktury w ramach sesji.
+    format: int32
+  invoiceNumber:
+    type: string
+    description: Numer faktury.
+    nullable: true
+  ksefNumber:
+    type: string
+    description: Numer KSeF.
+    nullable: true
+  referenceNumber:
+    type: string
+    description: Numer referencyjny faktury.
+    nullable: true
+  invoiceHash:
+    type: string
+    description: Skrót SHA256 faktury, zakodowany w formacie Base64.
+    nullable: true
+  invoiceFileName:
+    type: string
+    description: Nazwa pliku faktury (zwracana dla faktur wysyłanych wsadowo).
+    nullable: true
+  acquisitionDate:
+    type: string
+    description: Data nadania numeru KSeF.
+    format: date-time
+    nullable: true
+  invoicingDate:
+    type: string
+    description: Data przyjęcia faktury w systemie KSeF (do dalszego przetwarzania).
+    format: date-time
+  permanentStorageDate:
+    type: string
+    description: Data trwałego zapisu faktury w repozytorium systemu KSeF.
+    format: date-time
+    nullable: true
+  upoDownloadUrl:
+    type: string
+    description: Adres do pobrania UPO.
+    format: uri
+    nullable: true
+  status:
+    allOf:
+    - $ref: status_info.yaml
+    description: 'Status faktury.
+
+
+      | Code | Description | Details |
+
+      | --- | --- | --- |
+
+      | 100 | Faktura przyjęta do dalszego przetwarzania | - |
+
+      | 150 | Trwa przetwarzanie | - |
+
+      | 200 | Sukces | - |
+
+      | 405 | Przetwarzanie anulowane | - |
+
+      | 410 | Nieprawidłowy zakres uprawnień | - |
+
+      | 415 | Brak możliwości wysyłania faktury z załącznikiem | - |
+
+      | 430 | Błąd weryfikacji pliku faktury | - |
+
+      | 435 | Błąd odszyfrowania pliku | - |
+
+      | 440 | Duplikat faktury | - |
+
+      | 450 | Błąd weryfikacji semantyki dokumentu faktury | - |
+
+      | 500 | Nieznany błąd ({statusCode}) | - |'
+additionalProperties: false

@@ -1,0 +1,87 @@
+post:
+  tags:
+  - SearchPermissions
+  summary: Pobranie listy uprawnień podmiotowych do obsługi faktur
+  description: 'Zwraca listę uprawnień podmiotowych do obsługi faktur.
+
+
+    > Więcej informacji:
+
+    > - [Pobieranie listy uprawnień](https://github.com/CIRFMF/ksef-docs/blob/main/uprawnienia.md#pobranie-listy-uprawnie%C5%84-podmiotowych-do-obs%C5%82ugi-faktur)
+
+
+    Wymagane uprawnienia: `CredentialsManage`, `CredentialsRead`.'
+  parameters:
+  - name: pageOffset
+    in: query
+    description: Numer strony wyników.
+    schema:
+      type: integer
+      format: int32
+  - name: pageSize
+    in: query
+    description: Rozmiar strony wyników.
+    schema:
+      type: integer
+      format: int32
+  requestBody:
+    content:
+      application/json:
+        schema:
+          required:
+          - queryType
+          allOf:
+          - $ref: ../../components/schemas/entity_authorization_permissions_query_request.yaml
+        example:
+          authorizedIdentifier:
+            type: Nip
+            value: '7762811692'
+          queryType: Granted
+          permissionTypes:
+          - SelfInvoicing
+          - TaxRepresentative
+          - RRInvoicing
+  responses:
+    '200':
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/query_entity_authorization_permissions_response.yaml
+          example:
+            authorizationGrants:
+            - id: 0c9a72e8-f344-457f-9c16-7c640eb60242
+              authorIdentifier:
+                type: Pesel
+                value: '15062788702'
+              authorizedEntityIdentifier:
+                type: Nip
+                value: '7762811692'
+              authorizingEntityIdentifier:
+                type: Nip
+                value: '1134256681'
+              authorizationScope: SelfInvoicing
+              description: Uprawnienie podmiotowe do samofakturowania
+              startDate: '2025-06-22T10:41:11+00:00'
+            hasMore: false
+    '400':
+      description: '| ExceptionCode | ExceptionDescription | Details |
+
+        |-|-|-|
+
+        | 21405 | Błąd walidacji danych wejściowych. | {treść błędu z walidatora}
+        |'
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/exception_response.yaml
+      x-summary: Bad Request
+    '401':
+      description: Unauthorized
+    '403':
+      description: Forbidden
+  security:
+  - Bearer: []
+  x-required-permissions:
+  - CredentialsManage
+  - CredentialsRead

@@ -1,0 +1,22 @@
+enum:
+- Nip
+- InternalId
+- VatUe
+- Other
+- None
+type: string
+description: '| Wartość | Opis |
+
+  | --- | --- |
+
+  | Nip | Nip |
+
+  | InternalId | Identyfikator wewnętrzny |
+
+  | VatUe | VAT UE |
+
+  | Other | Inny identyfikator |
+
+  | None | Brak identyfikatora podmiotu trzeciego |
+
+  '
