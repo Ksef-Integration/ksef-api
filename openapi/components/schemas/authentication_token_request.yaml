@@ -1,0 +1,67 @@
+type: object
+xml:
+  name: AuthTokenRequest
+  namespace: "http://ksef.mf.gov.pl/auth/token/2.0"
+properties:
+  Challenge:
+    type: string
+    description: "Wartość otrzymana z wywołania endpointu /auth/challenge"
+  ContextIdentifier:
+    type: object
+    description: "Identyfikator kontekstu (NIP, InternalId lub NipVatUe)"
+    xml:
+      name: ContextIdentifier
+    properties:
+      Nip:
+        type: string
+        example: "5265877635"
+        description: "Numer NIP podmiotu uwierzytelniającego się"
+      InternalId:
+        type: string
+        example: "INT-001"
+        description: "Identyfikator wewnętrzny (opcjonalnie)"
+      NipVatUe:
+        type: string
+        example: "PL1234567890"
+        description: "Identyfikator złożony VAT UE (opcjonalnie)"
+  SubjectIdentifierType:
+    type: string
+    description: "Sposób identyfikacji podmiotu uwierzytelniającego się"
+    enum:
+      - certificateSubject
+      - certificateFingerprint
+  AuthorizationPolicy:
+    type: object
+    description: "(opcjonalnie) Reguły autoryzacyjne – np. dozwolone adresy IP"
+    xml:
+      name: AuthorizationPolicy
+    properties:
+      AllowedIps:
+        type: object
+        properties:
+          Ip4Addresses:
+            type: array
+            items:
+              type: string
+            example: ["192.168.0.1", "192.222.111.1"]
+          Ip4Masks:
+            type: array
+            items:
+              type: string
+            example: ["192.168.1.0/24"]
+          Ip4Ranges:
+            type: array
+            items:
+              type: string
+            example: ["222.111.0.1-222.111.0.255"]
+  Signature:
+    type: object
+    xml:
+      name: "ds:Signature"
+      namespace: "http://www.w3.org/2000/09/xmldsig#"
+    description: "Podpis XAdES XML podpisany kwalifikowanym certyfikatem"
+required:
+  - Challenge
+  - ContextIdentifier
+  - SubjectIdentifierType
+  - Signature
